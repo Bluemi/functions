@@ -50,11 +50,17 @@ void sayHelloWorld()
 	say("Hello World");
 }
 
+void sayByeWorld()
+{
+	say("Bye World");
+}
+
 void Main::initiateMainMenu()
 {
-	mainMenu.addItem(new MenuItem("say \"hello World\"", new Funcer<void (*)()>(sayHelloWorld)));
+	mainMenu.addItem(new MenuItem("say \"hello world\"", new Funcer<void (*)()>(sayHelloWorld)));
+	mainMenu.addItem(new MenuItem("say \"bye world\"", new Funcer<void (*)()>(sayByeWorld)));
 	mainMenu.addItem(new MenuItem("clear", new Funcer<int (*)()>(clear)));
-	mainMenu.addItem(new MenuItem("Quit", new Quitter(&running)));
+	mainMenu.addItem(new MenuItem("quit", new Quitter(&running)));
 }
 
 void Main::quit()
