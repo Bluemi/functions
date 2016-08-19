@@ -11,6 +11,7 @@ class Menu
 		void addItem(MenuItem*);
 		void draw();
 		void moveCursor(int);
+		void action();
 	private:
 		std::vector<MenuItem*> items;
 		int selectedItem;

@@ -44,3 +44,8 @@ void Menu::moveCursor(int value)
 		selectedItem = items.size()-1;
 	}
 }
+
+void Menu::action()
+{
+	items[selectedItem]->onAction();
+}
