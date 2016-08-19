@@ -6,12 +6,17 @@
 class MenuItem
 {
 	public:
-		MenuItem(const std::string&, void (*f)());
+		struct Functor
+		{
+			public:
+				virtual void onAction()=0;
+		};
+		MenuItem(const std::string&, Functor*);
 		virtual void onAction();
 		const std::string& getName();
 	private:
 		std::string name;
-		void (*func)();
+		Functor* func;
 };
 
 #endif
