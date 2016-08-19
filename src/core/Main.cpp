@@ -28,13 +28,14 @@ struct Quitter : public MenuItem::Functor
 		bool* b;
 };
 
+template<typename function>
 struct Funcer : public MenuItem::Functor
 {
 	public:
-		Funcer(void (*p)()) : func(p) {}
+		Funcer(function p) : func(p) {}
 		void onAction() override { func(); }
 	private:
-		void (*func)();
+		function func;
 };
 
 void say(const std::string& msg)
@@ -51,11 +52,8 @@ void sayHelloWorld()
 
 void Main::initiateMainMenu()
 {
-	// menu.addItem(new MenuItem("Say Hello World", sayHelloWorld));
-	// menu.addItem(new MenuItem("Say something", saySomething));
-	// menu.addItem(new MenuItem("Say something different", saySomethingDifferent));
-	
-	mainMenu.addItem(new MenuItem("say \"hello World\"", new Funcer(sayHelloWorld)));
+	mainMenu.addItem(new MenuItem("say \"hello World\"", new Funcer<void (*)()>(sayHelloWorld)));
+	mainMenu.addItem(new MenuItem("clear", new Funcer<int (*)()>(clear)));
 	mainMenu.addItem(new MenuItem("Quit", new Quitter(&running)));
 }
 
