@@ -42,6 +42,7 @@ void say(const std::string& msg)
 {
 	int x, y;
 	getmaxyx(stdscr, y, x);
+	clear();
 	mvprintw(y/2,(x-strlen(msg.c_str()))/2,"%s",msg.c_str());
 }
 
