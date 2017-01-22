@@ -8,5 +8,6 @@ gdb:
 line-counter:
 	@line-counter *pp
 compile:
+	@tput reset
 	@bam -j `nproc`
 .PHONY: run getlog gdb line-counter compile start

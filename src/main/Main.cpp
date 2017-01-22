@@ -2,6 +2,10 @@
 
 #include <iostream>
 
+#include <func/MutableFunction.hpp>
+#include <func/elemental/Print.hpp>
+#include <data/Date.hpp>
+
 int main()
 {
 	Main m;
@@ -11,5 +15,8 @@ int main()
 
 void Main::run()
 {
-	std::cout << "hello World" << std::endl;
+	MutableFunction mainFunction;
+	Date d(10);
+	mainFunction.addFunction(new Print());
+	mainFunction.call(d);
 }
