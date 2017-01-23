@@ -7,13 +7,14 @@ union Piece
 	int i;
 };
 
-enum Datatype { FLOAT, INT };
+enum Datatype { ERROR, FLOAT, INT };
 
 class Date
 {
 	public:
 		Date(float f);
 		Date(int i);
+		Date();
 
 		Datatype getType() const;
 		bool get(int&) const;

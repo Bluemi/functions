@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include <func/MutableFunction.hpp>
-#include <func/elemental/Print.hpp>
+#include <func/elemental/PrintAddition.hpp>
 #include <data/Date.hpp>
 
 int main()
@@ -16,7 +16,9 @@ int main()
 void Main::run()
 {
 	MutableFunction mainFunction;
-	Date d(10);
-	mainFunction.addFunction(new Print());
-	mainFunction.call(d);
+	Data data;
+	data.addDate(Date(100));
+	data.addDate(Date(20));
+	mainFunction.addFunction(new PrintAddition());
+	mainFunction.call(data);
 }

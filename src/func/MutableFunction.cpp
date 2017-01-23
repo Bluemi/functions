@@ -12,6 +12,14 @@ MutableFunction::~MutableFunction()
 	functions.clear();
 }
 
+void MutableFunction::call(const Data& d)
+{
+	for (Function* f : functions)
+	{
+		f->call(d);
+	}
+}
+
 void MutableFunction::addFunction(Function* func)
 {
 	functions.push_back(func);
@@ -33,12 +41,4 @@ bool MutableFunction::deleteFunction(unsigned int index)
 	functions.erase(functions.begin()+index);
 	delete f;
 	return true;
-}
-
-void MutableFunction::call(const Date& d)
-{
-	for (Function* f : functions)
-	{
-		f->call(d);
-	}
 }

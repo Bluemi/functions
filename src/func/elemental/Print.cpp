@@ -7,10 +7,11 @@
 Print::Print()
 {}
 
-void Print::call(const Date& d)
+void Print::call(const Data& data)
 {
 	int i = 0;
 	float f = 0.f;
+	Date d = data.getDate(0);
 	switch (d.getType())
 	{
 		case INT:
@@ -20,6 +21,9 @@ void Print::call(const Date& d)
 		case FLOAT:
 			d.get(f);
 			std::cout << f << std::endl;
+			break;
+		case ERROR:
+			Debug::warn("Print::call(): Datatype: ERROR");
 			break;
 		default:
 			Debug::warn("Print::call(): Unknown Datatype = " + Converter::intToString(d.getType()));

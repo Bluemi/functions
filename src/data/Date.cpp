@@ -15,6 +15,12 @@ Date::Date(int i)
 	p.i = i;
 }
 
+Date::Date()
+	: d(ERROR)
+{
+	p.i = 0;
+}
+
 Datatype Date::getType() const
 {
 	return d;
