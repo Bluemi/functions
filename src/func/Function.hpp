@@ -14,6 +14,7 @@ class Function
 		virtual void call(const Data&) = 0;
 
 		virtual DataPattern getParamPattern() const = 0;
+		virtual DataPattern getStackPattern() const = 0;
 };
 
 #endif

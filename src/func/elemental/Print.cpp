@@ -12,6 +12,10 @@ void Print::call(const Data& data)
 
 DataPattern Print::getParamPattern() const
 {
-	DataPattern pattern;
-	return pattern;
+	return DataPattern();
+}
+
+DataPattern Print::getStackPattern() const
+{
+	return DataPattern();
 }

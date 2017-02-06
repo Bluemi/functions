@@ -22,3 +22,8 @@ bool DataMask::validIndex(const unsigned int index) const
 {
 	return (index >= 0) && (index < offsets.size());
 }
+
+unsigned int DataMask::getSize() const
+{
+	return offsets.size();
+}

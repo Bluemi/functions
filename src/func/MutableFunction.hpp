@@ -15,6 +15,7 @@ class MutableFunction : public Function
 		bool removeFunction(unsigned int index); // entfernt die Function an der Stelle <index> aus den Functions
 
 		virtual DataPattern getParamPattern() const override;
+		virtual DataPattern getStackPattern() const override;
 	private:
 		std::vector<Caller> caller;
 		DataPattern pattern;

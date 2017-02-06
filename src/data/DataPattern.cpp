@@ -11,12 +11,12 @@ void DataPattern::addType(const DataType& t)
 	pattern.push_back(t);
 }
 
-size_t DataPattern::getSize() const
+unsigned int DataPattern::getSize() const
 {
 	return pattern.size();
 }
 
-size_t DataPattern::getBytesSize() const
+unsigned int DataPattern::getBytesSize() const
 {
 	size_t s = 0;
 	for (auto iter = pattern.begin(); iter != pattern.end(); ++iter)
@@ -36,27 +36,21 @@ DataType DataPattern::operator[](unsigned int index) const
 	if (!validIndex(index))
 	{
 		Debug::warn("DataPattern::operator[](): invalid index; index=" + Converter::intToString(index) + " size=" + Converter::intToString(pattern.size()));
-		return ERROR;
+		return DataType::UNDEFINED;
 	}
 	return pattern[index];
 }
 
-size_t DataPattern::getTypeSize(const DataType& t)
+DataType DataPattern::getTypeAt(unsigned int offset) const
 {
-	switch (t)
+	unsigned int n = 0;
+	unsigned int i = 0;
+	while (n < offset)
 	{
-		case INT:
-			return sizeof(int);
-		case FLOAT:
-			return sizeof(float);
-		case BOOL:
-			return sizeof(bool);
-		case ERROR:
-			Debug::warn("DataPattern::getTypeSize(): type=ERROR");
-			return 0;
+		n += getTypeSize(pattern[i]);
+		i++;
 	}
-	Debug::error("DataPattern::getTypeSize(): invalid type = " + Converter::intToString(t));
-	return 0;
+	return pattern[i];
 }
 
 bool DataPattern::matches(const DataPattern& p1, const DataPattern& p2)

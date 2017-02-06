@@ -10,6 +10,7 @@ class Print : public ElementalFunction
 		virtual void call(const Data&) override;
 
 		virtual DataPattern getParamPattern() const override;
+		virtual DataPattern getStackPattern() const override;
 };
 
 #endif

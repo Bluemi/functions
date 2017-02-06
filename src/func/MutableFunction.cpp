@@ -17,10 +17,30 @@ void MutableFunction::call(const Data& d)
 	}
 }
 
-void MutableFunction::addFunction(Function* func, const DataMask& mask)
+void MutableFunction::addFunction(Function* func, const DataMask& funcMask)
 {
-	// TODO validate DataTypes
-	caller.push_back(Caller(func, mask));
+	// check valid mask
+	if (funcMask.getSize() != func->getParamPattern().getSize())
+	{
+		// ERROR
+		return;
+	}
+	for (unsigned int i = 0; i < funcMask.getSize(); i++)
+	{
+		DataType stackType = getStackPattern().getTypeAt(funcMask.getOffset(i));
+		DataType paramType = func->getParamPattern()[i];
+		if (stackType == DataType::UNDEFINED || paramType == DataType::UNDEFINED)
+		{
+			// ERROR
+			return;
+		}
+		if (stackType != paramType)
+		{
+			// ERROR
+			return;
+		}
+	}
+	caller.push_back(Caller(func, funcMask));
 }
 
 bool MutableFunction::validIndex(unsigned int index)
@@ -42,4 +62,9 @@ bool MutableFunction::removeFunction(unsigned int index)
 DataPattern MutableFunction::getParamPattern() const
 {
 	return pattern;
+}
+
+DataPattern MutableFunction::getStackPattern() const
+{
+	return getParamPattern();
 }

@@ -13,8 +13,11 @@ class DataMask
 		DataMask();
 		void addOffset(const unsigned int value);
 		void addOffset(const unsigned int index, const unsigned int value);
+
 		unsigned int getOffset(const unsigned int index) const;
+
 		bool validIndex(const unsigned int index) const;
+		unsigned int getSize() const;
 	private:
 		std::vector<unsigned int> offsets;
 };
