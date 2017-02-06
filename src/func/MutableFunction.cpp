@@ -1,44 +1,45 @@
 #include "MutableFunction.hpp"
 
-MutableFunction::MutableFunction()
+MutableFunction::MutableFunction(const DataPattern& p)
+	: pattern(p)
 {}
 
 MutableFunction::~MutableFunction()
 {
-	for (Function* f : functions)
-	{
-		delete f;
-	}
-	functions.clear();
+	caller.clear();
 }
 
 void MutableFunction::call(const Data& d)
 {
-	for (Function* f : functions)
+	for (unsigned int i = 0; i < caller.size(); i++)
 	{
-		f->call(d);
+		caller[i].call(d);
 	}
 }
 
-void MutableFunction::addFunction(Function* func)
+void MutableFunction::addFunction(Function* func, const DataMask& mask)
 {
-	functions.push_back(func);
+	// TODO validate DataTypes
+	caller.push_back(Caller(func, mask));
 }
 
 bool MutableFunction::validIndex(unsigned int index)
 {
-	return (index >= 0) && (index < functions.size());
+	return (index >= 0) && (index < caller.size());
 }
 
-bool MutableFunction::deleteFunction(unsigned int index)
+bool MutableFunction::removeFunction(unsigned int index)
 {
 	if (!validIndex(index))
 	{
 		return false;
 	}
 
-	Function* f = functions[index];
-	functions.erase(functions.begin()+index);
-	delete f;
+	caller.erase(caller.begin()+index);
 	return true;
+}
+
+DataPattern MutableFunction::getParamPattern() const
+{
+	return pattern;
 }

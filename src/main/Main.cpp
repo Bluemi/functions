@@ -3,8 +3,9 @@
 #include <iostream>
 
 #include <func/MutableFunction.hpp>
-#include <func/elemental/PrintAddition.hpp>
-#include <data/Date.hpp>
+#include <func/elemental/Print.hpp>
+#include <data/DataPattern.hpp>
+#include <data/DataMask.hpp>
 
 int main()
 {
@@ -15,10 +16,12 @@ int main()
 
 void Main::run()
 {
-	MutableFunction mainFunction;
+	DataPattern pattern;
+	MutableFunction mainFunction(pattern);
 	Data data;
-	data.addDate(Date(100));
-	data.addDate(Date(20));
-	mainFunction.addFunction(new PrintAddition());
+	DataMask mask;
+	Print* p = new Print();
+	mainFunction.addFunction(p, mask);
 	mainFunction.call(data);
+	delete p;
 }

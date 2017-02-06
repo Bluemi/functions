@@ -2,13 +2,13 @@
 
 #include <iostream>
 
-void printAddition(int a, int b)
+void print()
 {
-	std::cout << (a + b) << std::endl;
+	std::cout << "hello World" << std::endl;
 }
 
 int main()
 {
-	printAddition(1, 2);
+	print();
 	return 0;
 }

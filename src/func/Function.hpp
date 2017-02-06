@@ -4,6 +4,7 @@
 #include <vector>
 
 #include <data/Data.hpp>
+#include <data/DataPattern.hpp>
 
 class Function
 {
@@ -11,6 +12,8 @@ class Function
 		Function();
 		virtual ~Function();
 		virtual void call(const Data&) = 0;
+
+		virtual DataPattern getParamPattern() const = 0;
 };
 
 #endif
