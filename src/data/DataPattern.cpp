@@ -43,6 +43,11 @@ DataType DataPattern::operator[](unsigned int index) const
 
 DataType DataPattern::getTypeAt(unsigned int offset) const
 {
+	if (getSize() == 0)
+	{
+		Debug::warn("DataPattern::getTypeAt(): no Types in here: return DataType::UNDEFINED");
+		return DataType::UNDEFINED;
+	}
 	unsigned int n = 0;
 	unsigned int i = 0;
 	while (n < offset)

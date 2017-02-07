@@ -2,13 +2,13 @@
 
 #include <iostream>
 
-void print()
+void printNumber(int n)
 {
-	std::cout << "hello World" << std::endl;
+	std::cout << n << std::endl;
 }
 
 int main()
 {
-	print();
+	printNumber(2);
 	return 0;
 }

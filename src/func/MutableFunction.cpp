@@ -1,5 +1,8 @@
 #include "MutableFunction.hpp"
 
+#include <misc/Debug.hpp>
+#include <misc/Converter.hpp>
+
 MutableFunction::MutableFunction(const DataPattern& p)
 	: pattern(p)
 {}
@@ -17,15 +20,15 @@ void MutableFunction::call(const Data& d)
 	}
 }
 
-AddError MutableFunction::addFunction(Function* func, const DataMask& funcMask)
+ErrorCode MutableFunction::addFunction(Function* func, const DataMask& funcMask)
 {
-	AddError errorCode = checkAddFunction(func, funcMask);
+	ErrorCode errorCode = checkAddFunction(func, funcMask);
 	if (errorCode)
 	{
 		return errorCode;
 	}
 	caller.push_back(Caller(func, funcMask));
-	return AddError::NONE;
+	return ErrorCode::NONE;
 }
 
 bool MutableFunction::validIndex(unsigned int index)
@@ -54,25 +57,21 @@ DataPattern MutableFunction::getStackPattern() const
 	return getParamPattern();
 }
 
-AddError MutableFunction::checkAddFunction(Function* func, const DataMask& funcMask) const
+ErrorCode MutableFunction::checkAddFunction(Function* func, const DataMask& funcMask) const
 {
 	// check valid mask
 	if (funcMask.getSize() != func->getParamPattern().getSize())
 	{
-		return AddError::WRONG_PARAMETER_SIZE;
+		return ErrorCode::WRONG_PARAMETER_SIZE;
 	}
 	for (unsigned int i = 0; i < funcMask.getSize(); i++)
 	{
 		DataType stackType = getStackPattern().getTypeAt(funcMask.getOffset(i));
 		DataType paramType = func->getParamPattern()[i];
-		if (stackType == DataType::UNDEFINED || paramType == DataType::UNDEFINED)
+		if (!matches(stackType, paramType))
 		{
-			return AddError::UNDEFINED_DATA_TYPE;
-		}
-		if (stackType != paramType)
-		{
-			return AddError::TYPE_MISMATCH;
+			return ErrorCode::TYPE_MISMATCH;
 		}
 	}
-	return AddError::NONE;
+	return ErrorCode::NONE;
 }

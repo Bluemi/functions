@@ -17,6 +17,15 @@ unsigned int getTypeSize(const DataType& t)
 			Debug::warn("DataPattern::getTypeSize(): type=UNDEFINED");
 			return 0;
 	}
-	Debug::error("DataPattern::getTypeSize(): invalid type = " + Converter::intToString(t));
+	Debug::error("DataType::getTypeSize(): invalid type = " + Converter::intToString(t));
 	return 0;
+}
+
+bool matches(const DataType& a, const DataType& b)
+{
+	if (a == DataType::UNDEFINED)
+	{
+		return false;
+	}
+	return (a == b);
 }

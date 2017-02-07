@@ -1,12 +1,12 @@
-#ifndef __PRINT_CLASS__
-#define __PRINT_CLASS__
+#ifndef __PRINTNUM_CLASS__
+#define __PRINTNUM_CLASS__
 
 #include <func/ElementalFunction.hpp>
 
-class Print : public ElementalFunction
+class PrintNum : public ElementalFunction
 {
 	public:
-		Print();
+		PrintNum();
 		virtual void call(const Data&) override;
 
 		virtual DataPattern getParamPattern() const override;
