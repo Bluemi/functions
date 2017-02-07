@@ -17,30 +17,15 @@ void MutableFunction::call(const Data& d)
 	}
 }
 
-void MutableFunction::addFunction(Function* func, const DataMask& funcMask)
+AddError MutableFunction::addFunction(Function* func, const DataMask& funcMask)
 {
-	// check valid mask
-	if (funcMask.getSize() != func->getParamPattern().getSize())
+	AddError errorCode = checkAddFunction(func, funcMask);
+	if (errorCode)
 	{
-		// ERROR
-		return;
-	}
-	for (unsigned int i = 0; i < funcMask.getSize(); i++)
-	{
-		DataType stackType = getStackPattern().getTypeAt(funcMask.getOffset(i));
-		DataType paramType = func->getParamPattern()[i];
-		if (stackType == DataType::UNDEFINED || paramType == DataType::UNDEFINED)
-		{
-			// ERROR
-			return;
-		}
-		if (stackType != paramType)
-		{
-			// ERROR
-			return;
-		}
+		return errorCode;
 	}
 	caller.push_back(Caller(func, funcMask));
+	return AddError::NONE;
 }
 
 bool MutableFunction::validIndex(unsigned int index)
@@ -67,4 +52,27 @@ DataPattern MutableFunction::getParamPattern() const
 DataPattern MutableFunction::getStackPattern() const
 {
 	return getParamPattern();
+}
+
+AddError MutableFunction::checkAddFunction(Function* func, const DataMask& funcMask) const
+{
+	// check valid mask
+	if (funcMask.getSize() != func->getParamPattern().getSize())
+	{
+		return AddError::WRONG_PARAMETER_SIZE;
+	}
+	for (unsigned int i = 0; i < funcMask.getSize(); i++)
+	{
+		DataType stackType = getStackPattern().getTypeAt(funcMask.getOffset(i));
+		DataType paramType = func->getParamPattern()[i];
+		if (stackType == DataType::UNDEFINED || paramType == DataType::UNDEFINED)
+		{
+			return AddError::UNDEFINED_DATA_TYPE;
+		}
+		if (stackType != paramType)
+		{
+			return AddError::TYPE_MISMATCH;
+		}
+	}
+	return AddError::NONE;
 }
