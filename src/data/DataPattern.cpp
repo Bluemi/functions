@@ -45,17 +45,28 @@ DataType DataPattern::getTypeAt(unsigned int offset) const
 {
 	if (getSize() == 0)
 	{
-		Debug::warn("DataPattern::getTypeAt(): no Types in here: return DataType::UNDEFINED");
 		return DataType::UNDEFINED;
 	}
-	unsigned int n = 0;
+	unsigned int countOffset = 0;
 	unsigned int i = 0;
-	while (n < offset)
+	while (true)
 	{
-		n += getTypeSize(pattern[i]);
+		if (i >= getSize())
+		{
+			// offsetOutOfRange
+			return DataType::UNDEFINED;
+		}
+		if (countOffset == offset)
+		{
+			return pattern[i];
+		}
+		else if (countOffset > offset)
+		{
+			return DataType::UNDEFINED;
+		}
+		countOffset += getTypeSize(pattern[i]);
 		i++;
 	}
-	return pattern[i];
 }
 
 bool DataPattern::matches(const DataPattern& p1, const DataPattern& p2)
@@ -72,4 +83,14 @@ bool DataPattern::matches(const DataPattern& p1, const DataPattern& p2)
 		}
 	}
 	return true;
+}
+
+std::string DataPattern::toString() const
+{
+	std::string s = "";
+	for (unsigned int i = 0; i < pattern.size(); i++)
+	{
+		s += " " + getTypeName(pattern[i]);
+	}
+	return s;
 }

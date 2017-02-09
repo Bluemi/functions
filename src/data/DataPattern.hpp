@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <vector>
+#include <string>
 
 #include "DataType.hpp"
 
@@ -19,6 +20,8 @@ class DataPattern
 		DataType getTypeAt(unsigned int offset) const; // returnt den Datentyp an der Stelle index
 
 		static bool matches(const DataPattern& p1, const DataPattern& p2);
+
+		std::string toString() const;
 	private:
 		std::vector<DataType> pattern;
 };

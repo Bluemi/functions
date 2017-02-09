@@ -21,6 +21,23 @@ unsigned int getTypeSize(const DataType& t)
 	return 0;
 }
 
+std::string getTypeName(const DataType t)
+{
+	switch (t)
+	{
+		case DataType::INT:
+			return "INT";
+		case DataType::FLOAT:
+			return "FLOAT";
+		case DataType::BOOL:
+			return "BOOL";
+		case DataType::UNDEFINED:
+			return "UNDEFINED";
+	}
+	Debug::warn("Unknown DataType: " + Converter::intToString(t));
+	return "";
+}
+
 bool matches(const DataType& a, const DataType& b)
 {
 	if (a == DataType::UNDEFINED)

@@ -8,11 +8,22 @@
 #include <data/DataMask.hpp>
 #include <misc/Debug.hpp>
 #include <misc/Converter.hpp>
+#include <test/Test.hpp>
+
+#define TEST false
 
 int main()
 {
-	Main m;
-	m.run();
+	if (TEST)
+	{
+		Test t;
+		t.test();
+	}
+	else
+	{
+		Main m;
+		m.run();
+	}
 	return 0;
 }
 
@@ -20,11 +31,12 @@ void Main::run()
 {
 	DataPattern pattern;
 	pattern.addType(DataType::INT);
+	pattern.addType(DataType::INT);
 	MutableFunction mainFunction(pattern);
 	Data data;
 	data << 1 << 2;
 	DataMask mask;
-	mask.addOffset(0);
+	mask.addOffset(4);
 	PrintNum* p = new PrintNum();
 	if (ErrorCode code = mainFunction.addFunction(p, mask))
 	{
