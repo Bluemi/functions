@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include <func/MutableFunction.hpp>
-#include <func/elemental/PrintNum.hpp>
+#include <func/elemental/PrintAddition.hpp>
 #include <data/DataPattern.hpp>
 #include <data/DataMask.hpp>
 // Debug
@@ -39,8 +39,9 @@ void Main::run()
 
 	DataMask mask;
 	mask.addOffset(8);
+	mask.addOffset(4);
 
-	PrintNum* p = new PrintNum();
+	PrintAddition* p = new PrintAddition();
 	if (ErrorCode code = mainFunction.addFunction(p, mask))
 	{
 		Debug::warn("Main::run(): mainFunction.addFunction() returns errorCode " + getString(code));
