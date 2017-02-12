@@ -15,8 +15,7 @@ void PrintAddition::call(const Data& data)
 DataPattern PrintAddition::getParamPattern() const
 {
 	DataPattern p;
-	p.addType(DataType::INT);
-	p.addType(DataType::INT);
+	p << DataType::INT << DataType::INT;
 	return p;
 }
 

@@ -11,7 +11,7 @@ class DataPattern
 {
 	public:
 		DataPattern();
-		void addType(const DataType& t);
+		DataPattern& operator<< (const DataType& t);
 		unsigned int getSize() const; // gibt die Anzahl der Typen an
 		unsigned int getBytesSize() const; // gibt die Anzahl der Bytes aller Typen an
 		bool validIndex(unsigned int index) const;

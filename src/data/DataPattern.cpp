@@ -6,9 +6,10 @@
 DataPattern::DataPattern()
 {}
 
-void DataPattern::addType(const DataType& t)
+DataPattern& DataPattern::operator<< (const DataType& t)
 {
 	pattern_.push_back(t);
+	return *this;
 }
 
 unsigned int DataPattern::getSize() const

@@ -14,7 +14,7 @@ void PrintNum::call(const Data& data)
 DataPattern PrintNum::getParamPattern() const
 {
 	DataPattern p;
-	p.addType(DataType::INT);
+	p << DataType::INT;
 	return p;
 }
 

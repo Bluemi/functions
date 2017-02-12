@@ -11,7 +11,7 @@ class DataMask
 {
 	public:
 		DataMask();
-		void addOffset(const unsigned int value);
+		DataMask& operator<< (const unsigned int value);
 		void addOffset(const unsigned int index, const unsigned int value);
 
 		unsigned int getOffset(const unsigned int index) const;

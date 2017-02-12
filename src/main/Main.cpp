@@ -31,15 +31,12 @@ int main()
 void Main::run()
 {
 	DataPattern pattern;
-	pattern.addType(DataType::INT);
-	pattern.addType(DataType::INT);
-	pattern.addType(DataType::INT);
+	pattern << DataType::INT << DataType::INT << DataType::INT;
 
 	MutableFunction mainFunction(pattern);
 
 	DataMask mask;
-	mask.addOffset(8);
-	mask.addOffset(4);
+	mask << 8 << 4;
 
 	PrintAddition* p = new PrintAddition();
 	if (ErrorCode code = mainFunction.addFunction(p, mask))

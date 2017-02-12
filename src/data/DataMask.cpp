@@ -3,9 +3,10 @@
 DataMask::DataMask()
 {}
 
-void DataMask::addOffset(const unsigned int value)
+DataMask& DataMask::operator<< (const unsigned int value)
 {
 	offsets_.push_back(value);
+	return *this;
 }
 
 void DataMask::addOffset(const unsigned int index, const unsigned int value)

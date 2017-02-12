@@ -7,9 +7,7 @@
 void testDataPattern()
 {
 	DataPattern pattern;
-	pattern.addType(DataType::INT);
-	pattern.addType(DataType::BOOL);
-	pattern.addType(DataType::FLOAT);
+	pattern << DataType::INT << DataType::BOOL << DataType::FLOAT;
 	std::cout << pattern.toString() << std::endl;
 	for (unsigned int at = 0; at < 10; at++)
 	{
