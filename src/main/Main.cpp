@@ -48,7 +48,6 @@ void Main::run()
 
 	Data data;
 	data << 1 << 2 << 3;
-	data.printString();
 
 	mainFunction.call(data);
 	delete p;
