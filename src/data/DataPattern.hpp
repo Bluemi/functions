@@ -23,7 +23,7 @@ class DataPattern
 
 		std::string toString() const;
 	private:
-		std::vector<DataType> pattern;
+		std::vector<DataType> pattern_;
 };
 
 #endif

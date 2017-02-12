@@ -8,18 +8,18 @@ DataPattern::DataPattern()
 
 void DataPattern::addType(const DataType& t)
 {
-	pattern.push_back(t);
+	pattern_.push_back(t);
 }
 
 unsigned int DataPattern::getSize() const
 {
-	return pattern.size();
+	return pattern_.size();
 }
 
 unsigned int DataPattern::getBytesSize() const
 {
 	size_t s = 0;
-	for (auto iter = pattern.begin(); iter != pattern.end(); ++iter)
+	for (auto iter = pattern_.begin(); iter != pattern_.end(); ++iter)
 	{
 		s += getTypeSize(*iter);
 	}
@@ -28,17 +28,17 @@ unsigned int DataPattern::getBytesSize() const
 
 bool DataPattern::validIndex(unsigned int index) const
 {
-	return (index >= 0) && (index < pattern.size());
+	return (index >= 0) && (index < pattern_.size());
 }
 
 DataType DataPattern::operator[](unsigned int index) const
 {
 	if (!validIndex(index))
 	{
-		Debug::warn("DataPattern::operator[](): invalid index; index=" + Converter::intToString(index) + " size=" + Converter::intToString(pattern.size()));
+		Debug::warn("DataPattern::operator[](): invalid index; index=" + Converter::intToString(index) + " size=" + Converter::intToString(pattern_.size()));
 		return DataType::UNDEFINED;
 	}
-	return pattern[index];
+	return pattern_[index];
 }
 
 DataType DataPattern::getTypeAt(unsigned int offset) const
@@ -58,13 +58,13 @@ DataType DataPattern::getTypeAt(unsigned int offset) const
 		}
 		if (countOffset == offset)
 		{
-			return pattern[i];
+			return pattern_[i];
 		}
 		else if (countOffset > offset)
 		{
 			return DataType::UNDEFINED;
 		}
-		countOffset += getTypeSize(pattern[i]);
+		countOffset += getTypeSize(pattern_[i]);
 		i++;
 	}
 }
@@ -88,9 +88,9 @@ bool DataPattern::matches(const DataPattern& p1, const DataPattern& p2)
 std::string DataPattern::toString() const
 {
 	std::string s = "";
-	for (unsigned int i = 0; i < pattern.size(); i++)
+	for (unsigned int i = 0; i < pattern_.size(); i++)
 	{
-		s += " " + getTypeName(pattern[i]);
+		s += " " + getTypeName(pattern_[i]);
 	}
 	return s;
 }

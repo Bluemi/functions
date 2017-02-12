@@ -19,7 +19,7 @@ class DataMask
 		bool validIndex(const unsigned int index) const;
 		unsigned int getSize() const;
 	private:
-		std::vector<unsigned int> offsets;
+		std::vector<unsigned int> offsets_;
 };
 
 #endif

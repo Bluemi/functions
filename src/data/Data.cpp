@@ -2,36 +2,53 @@
 
 #include <string.h>
 #include <stdlib.h>
+#include <bitset>
 
 Data::Data()
-	: size(0)
-{}
+	: size_(0), capacity_(0)
+{
+	data_ = malloc(0);
+}
+
+Data::Data(unsigned int c)
+	: size_(0), capacity_(c)
+{
+	data_ = malloc(c);
+}
 
 Data::~Data()
 {
-	free(data);
+	free(data_);
 }
 
-Data& Data::operator<<(int i)
+void Data::copyFrom(const Data& source, const unsigned int offset, const unsigned int size)
 {
-	if (size == 0) // Wenn noch nie speicher zugewiesen wurde
-	{
-		data = malloc(sizeof(int));
-		memcpy(data, &i, sizeof(int));
-	}
-	else
-	{
-		data = realloc(data, size+sizeof(int));
-		char* c = (char*) data;
-		memcpy(c+size, &i, sizeof(int));
-	}
-	size += sizeof(int);
-	return *this;
+	copyData(((char*)source.data_)+offset, size);
 }
 
-int Data::getIntAt(unsigned int offset) const
+void Data::copyData(void *source, unsigned int size)
 {
-	char *c = (char*)data;
-	int *x = (int*)(c+offset);
-	return *x;
+	if (capacity_ < size_+size)
+	{
+		data_ = realloc(data_, size_+size);
+		capacity_ = size_+size;
+	}
+	char* c = (char*) data_;
+	memcpy(c+size_, source, size);
+	size_ += size;
+}
+
+bool Data::validIndex(unsigned int offset) const
+{
+	return (offset >= 0) && (offset < size_);
+}
+
+void Data::printString() const
+{
+	for (unsigned int i = 0; i < size_; i++)
+	{
+		char* c = (char*)data_;
+		std::bitset<8> b(*(c+i));
+		std::cout << b << std::endl;
+	}
 }

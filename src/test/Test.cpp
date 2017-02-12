@@ -19,5 +19,5 @@ void testDataPattern()
 
 void Test::test()
 {
-	testDataPattern();
+	//testDataPattern();
 }

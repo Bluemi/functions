@@ -6,6 +6,7 @@
 #include <func/elemental/PrintNum.hpp>
 #include <data/DataPattern.hpp>
 #include <data/DataMask.hpp>
+// Debug
 #include <misc/Debug.hpp>
 #include <misc/Converter.hpp>
 #include <test/Test.hpp>
@@ -32,16 +33,23 @@ void Main::run()
 	DataPattern pattern;
 	pattern.addType(DataType::INT);
 	pattern.addType(DataType::INT);
+	pattern.addType(DataType::INT);
+
 	MutableFunction mainFunction(pattern);
-	Data data;
-	data << 1 << 2;
+
 	DataMask mask;
-	mask.addOffset(4);
+	mask.addOffset(8);
+
 	PrintNum* p = new PrintNum();
 	if (ErrorCode code = mainFunction.addFunction(p, mask))
 	{
 		Debug::warn("Main::run(): mainFunction.addFunction() returns errorCode " + getString(code));
 	}
+
+	Data data;
+	data << 1 << 2 << 3;
+	data.printString();
+
 	mainFunction.call(data);
 	delete p;
 }

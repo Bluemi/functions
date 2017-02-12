@@ -7,8 +7,8 @@ PrintNum::PrintNum()
 
 void PrintNum::call(const Data& data)
 {
-	int i = data.getIntAt(0);
-	std::cout << std::endl << i << std::endl << std::endl;
+	int i = data.getAt<int>(0);
+	std::cout << i << std::endl;
 }
 
 DataPattern PrintNum::getParamPattern() const

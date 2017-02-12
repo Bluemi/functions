@@ -16,8 +16,8 @@ class Caller
 		~Caller();
 		void call(const Data& data);
 	private:
-		Function* func;
-		DataMask mask;
+		Function* func_;
+		DataMask mask_;
 };
 
 #endif

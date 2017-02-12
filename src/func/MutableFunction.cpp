@@ -4,19 +4,19 @@
 #include <misc/Converter.hpp>
 
 MutableFunction::MutableFunction(const DataPattern& p)
-	: pattern(p)
+	: pattern_(p), stackSize_(getStackPattern().getBytesSize())
 {}
 
 MutableFunction::~MutableFunction()
 {
-	caller.clear();
+	caller_.clear();
 }
 
 void MutableFunction::call(const Data& d)
 {
-	for (unsigned int i = 0; i < caller.size(); i++)
+	for (unsigned int i = 0; i < caller_.size(); i++)
 	{
-		caller[i].call(d);
+		caller_[i].call(d);
 	}
 }
 
@@ -27,13 +27,13 @@ ErrorCode MutableFunction::addFunction(Function* func, const DataMask& funcMask)
 	{
 		return errorCode;
 	}
-	caller.push_back(Caller(func, funcMask));
+	caller_.push_back(Caller(func, funcMask));
 	return ErrorCode::NONE;
 }
 
 bool MutableFunction::validIndex(unsigned int index)
 {
-	return (index >= 0) && (index < caller.size());
+	return (index >= 0) && (index < caller_.size());
 }
 
 bool MutableFunction::removeFunction(unsigned int index)
@@ -43,13 +43,13 @@ bool MutableFunction::removeFunction(unsigned int index)
 		return false;
 	}
 
-	caller.erase(caller.begin()+index);
+	caller_.erase(caller_.begin()+index);
 	return true;
 }
 
 DataPattern MutableFunction::getParamPattern() const
 {
-	return pattern;
+	return pattern_;
 }
 
 DataPattern MutableFunction::getStackPattern() const

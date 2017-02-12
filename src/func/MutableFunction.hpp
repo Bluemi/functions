@@ -20,8 +20,9 @@ class MutableFunction : public Function
 		virtual DataPattern getStackPattern() const override;
 	private:
 		ErrorCode checkAddFunction(Function* func, const DataMask& funcMask) const;
-		std::vector<Caller> caller;
-		DataPattern pattern;
+		DataPattern pattern_;
+		int stackSize_;
+		std::vector<Caller> caller_;
 };
 
 #endif
