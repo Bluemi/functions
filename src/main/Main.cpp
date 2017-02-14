@@ -30,10 +30,10 @@ int main()
 
 void Main::run()
 {
-	DataPattern pattern;
-	pattern << DataType::INT << DataType::INT << DataType::INT;
+	DataPattern paramPattern;
+	paramPattern << INT << INT << INT;
 
-	MutableFunction mainFunction(pattern);
+	MutableFunction mainFunction(paramPattern);
 
 	DataMask mask;
 	mask << 8 << 4;

@@ -9,7 +9,7 @@ class PrintAddition : public ElementalFunction
 		PrintAddition();
 		virtual void call(const Data&) override;
 
-		virtual DataPattern getParamPattern() const override;
+		virtual DataPattern getParameterPattern() const override;
 		virtual DataPattern getStackPattern() const override;
 };
 

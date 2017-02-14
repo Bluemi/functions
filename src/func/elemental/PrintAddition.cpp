@@ -12,7 +12,7 @@ void PrintAddition::call(const Data& data)
 	std::cout << a << "+" << b << "=" << (a+b) << std::endl;
 }
 
-DataPattern PrintAddition::getParamPattern() const
+DataPattern PrintAddition::getParameterPattern() const
 {
 	DataPattern p;
 	p << DataType::INT << DataType::INT;

@@ -1,9 +1,7 @@
 #ifndef __DATAPATTERN_CLASS__
 #define __DATAPATTERN_CLASS__
 
-#include <stdlib.h>
 #include <vector>
-#include <string>
 
 #include "DataType.hpp"
 

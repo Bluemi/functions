@@ -15,7 +15,7 @@ class Function
 
 		unsigned int getStackSize() const;
 
-		virtual DataPattern getParamPattern() const = 0;
+		virtual DataPattern getParameterPattern() const = 0;
 		virtual DataPattern getStackPattern() const = 0;
 };
 

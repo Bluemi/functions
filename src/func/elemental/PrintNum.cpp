@@ -11,7 +11,7 @@ void PrintNum::call(const Data& data)
 	std::cout << i << std::endl;
 }
 
-DataPattern PrintNum::getParamPattern() const
+DataPattern PrintNum::getParameterPattern() const
 {
 	DataPattern p;
 	p << DataType::INT;

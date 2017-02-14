@@ -4,7 +4,7 @@
 #include <misc/Converter.hpp>
 
 MutableFunction::MutableFunction(const DataPattern& p)
-	: pattern_(p), stackSize_(getStackPattern().getBytesSize())
+	: parameterPattern_(p), stackSize_(getStackPattern().getBytesSize())
 {}
 
 MutableFunction::~MutableFunction()
@@ -47,27 +47,27 @@ bool MutableFunction::removeFunction(unsigned int index)
 	return true;
 }
 
-DataPattern MutableFunction::getParamPattern() const
+DataPattern MutableFunction::getParameterPattern() const
 {
-	return pattern_;
+	return parameterPattern_;
 }
 
 DataPattern MutableFunction::getStackPattern() const
 {
-	return getParamPattern();
+	return getParameterPattern();
 }
 
 ErrorCode MutableFunction::checkAddFunction(Function* func, const DataMask& funcMask) const
 {
 	// check valid mask
-	if (funcMask.getSize() != func->getParamPattern().getSize())
+	if (funcMask.getSize() != func->getParameterPattern().getSize())
 	{
 		return ErrorCode::WRONG_PARAMETER_SIZE;
 	}
 	for (unsigned int i = 0; i < funcMask.getSize(); i++)
 	{
 		DataType stackType = getStackPattern().getTypeAt(funcMask.getOffset(i));
-		DataType paramType = func->getParamPattern()[i];
+		DataType paramType = func->getParameterPattern()[i];
 		if (!matches(stackType, paramType))
 		{
 			return ErrorCode::TYPE_MISMATCH;

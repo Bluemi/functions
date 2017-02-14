@@ -11,9 +11,9 @@ void Caller::call(const Data& data)
 {
 	// Stack initialisieren
 	Data newStack(func_->getStackSize());
-	for (unsigned int i = 0; i < func_->getParamPattern().getSize(); i++)
+	for (unsigned int i = 0; i < func_->getParameterPattern().getSize(); i++)
 	{
-		newStack.copyFrom(data, mask_.getOffset(i), getTypeSize(func_->getParamPattern()[i]));
+		newStack.copyFrom(data, mask_.getOffset(i), getTypeSize(func_->getParameterPattern()[i]));
 	}
 	func_->call(newStack);
 }
