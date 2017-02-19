@@ -11,12 +11,15 @@ class Function
 	public:
 		Function();
 		virtual ~Function();
-		virtual void call(const Data&) = 0;
 
 		unsigned int getStackSize() const;
 
 		virtual DataPattern getParameterPattern() const = 0;
 		virtual DataPattern getStackPattern() const = 0;
+	protected:
+		virtual void call(const Data&) = 0;
+	friend class Starter;
+	friend class Caller;
 };
 
 #endif

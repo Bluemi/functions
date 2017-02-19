@@ -52,3 +52,8 @@ void Data::printString() const
 		std::cout << b << std::endl;
 	}
 }
+
+unsigned int Data::getSize() const
+{
+	return size_;
+}

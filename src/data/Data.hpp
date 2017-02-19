@@ -21,12 +21,15 @@ class Data
 		bool validIndex(unsigned int offset) const;
 
 		void printString() const;
+
+		unsigned int getSize() const;
 	private:
 		void* data_;
 		unsigned int size_;
 		unsigned int capacity_;
 };
 
+// Diese Funktion überprüft nicht, ob der Zugriff über denn reservierten Speicherplatz hinaus geht
 template<typename T>
 T Data::getAt(unsigned int offset) const
 {

@@ -1,6 +1,8 @@
-Lokale Variablen erzeugen
-Return Values
-Wrapper-Naming(einfacher Zugriff über Namen, statt über Offsets)
-if-Bedingungen
-Schleifen
-Klassen?
+Feature: Starter
+Feature: Lokale Variablen erzeugen
+Feature: Return Values
+Feature: Wrapper-Naming(einfacher Zugriff über Namen, statt über Offsets)
+Feature: if-Bedingungen
+Feature: Schleifen
+Project: Zahlenraten
+Feature: Klassen?

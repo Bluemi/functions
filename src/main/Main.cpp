@@ -6,6 +6,7 @@
 #include <func/elemental/PrintAddition.hpp>
 #include <data/DataPattern.hpp>
 #include <data/DataMask.hpp>
+#include <func/Starter.hpp>
 // Debug
 #include <misc/Debug.hpp>
 #include <misc/Converter.hpp>
@@ -33,20 +34,21 @@ void Main::run()
 	DataPattern paramPattern;
 	paramPattern << INT << INT << INT;
 
-	MutableFunction mainFunction(paramPattern);
+	MutableFunction* mainFunction = new MutableFunction(paramPattern);
 
 	DataMask mask;
 	mask << 8 << 4;
 
 	PrintAddition* p = new PrintAddition();
-	if (ErrorCode code = mainFunction.addFunction(p, mask))
+	if (ErrorCode code = mainFunction->addFunction(p, mask))
 	{
 		Debug::warn("Main::run(): mainFunction.addFunction() returns errorCode " + getString(code));
 	}
 
-	Data data;
-	data << 1 << 2 << 3;
+	Starter starter(mainFunction);
+	starter << 3 << 2 << 1;
 
-	mainFunction.call(data);
+	starter.start();
+	delete mainFunction;
 	delete p;
 }
