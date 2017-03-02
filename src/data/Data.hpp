@@ -19,6 +19,7 @@ class Data
 		void copyFrom(const Data& source, const unsigned int offset, const unsigned int size);
 		void copyData(void *source, unsigned int size);
 		bool validIndex(unsigned int offset) const;
+		bool allocate(const unsigned int size);
 
 		void printString() const;
 

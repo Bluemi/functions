@@ -2,14 +2,14 @@
 #define __STARTER_CLASS__
 
 #include "Function.hpp"
-#include <misc/ErrorCode.hpp>
+#include <misc/codes/StartErrorCode.hpp>
 #include <data/types/Typer.hpp>
 
 class Starter
 {
 	public:
 		Starter(Function* f);
-		ErrorCode start();
+		StartErrorCode start();
 
 		template <typename T>
 		Starter& operator<<(T t);

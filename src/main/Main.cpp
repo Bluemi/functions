@@ -32,7 +32,7 @@ void Main::run()
 	DataPattern paramPattern;
 	paramPattern << INT << INT << INT;
 
-	MutableFunction* mainFunction = new MutableFunction(paramPattern);
+	MutableFunction* mainFunction = new MutableFunction(paramPattern); // create MutableFunction that takes 3 ints as parameters
 
 	DataMask mask;
 	mask << 8 << 4;

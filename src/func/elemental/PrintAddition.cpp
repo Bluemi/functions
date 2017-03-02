@@ -7,8 +7,8 @@ PrintAddition::PrintAddition()
 
 void PrintAddition::call(const Data& data)
 {
-	int a = data.getAt<int>(0);
-	int b = data.getAt<int>(4);
+	const int a = data.getAt<int>(0);
+	const int b = data.getAt<int>(4);
 	std::cout << a << "+" << b << "=" << (a+b) << std::endl;
 }
 

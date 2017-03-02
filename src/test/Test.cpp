@@ -25,7 +25,8 @@ void testStarter()
 	Function* mainFunc = new MutableFunction(pattern);
 	Starter starter(mainFunc);
 	starter << 3;
-	starter.start();
+	StartErrorCode code = starter.start();
+	std::cout << getString(code) << std::endl;
 }
 void testTyper()
 {

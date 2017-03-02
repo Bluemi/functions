@@ -43,6 +43,15 @@ bool Data::validIndex(unsigned int offset) const
 	return (offset >= 0) && (offset < size_);
 }
 
+bool Data::allocate(const unsigned int size)
+{
+	if (size < capacity_) // data soll nicht durch allocate kleiner werden
+		return false;
+	data_ = realloc(data_, size);
+	capacity_ = size;
+	return true;
+}
+
 void Data::printString() const
 {
 	for (unsigned int i = 0; i < size_; i++)

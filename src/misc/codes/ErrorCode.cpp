@@ -1,7 +1,7 @@
 #include "ErrorCode.hpp"
 
-#include "Debug.hpp"
-#include "Converter.hpp"
+#include <misc/Debug.hpp>
+#include <misc/Converter.hpp>
 
 std::string getString(const ErrorCode code)
 {

@@ -4,7 +4,7 @@
 #include "Function.hpp"
 #include "Caller.hpp"
 
-#include <misc/ErrorCode.hpp>
+#include <misc/codes/ErrorCode.hpp>
 
 class MutableFunction : public Function
 {

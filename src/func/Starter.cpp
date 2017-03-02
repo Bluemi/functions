@@ -6,12 +6,14 @@ Starter::Starter(Function* f)
 	: function(f)
 {}
 
-ErrorCode Starter::start()
+StartErrorCode Starter::start()
 {
 	if (!DataPattern::matches(function->getParameterPattern(), dataPattern))
 	{
-		return ErrorCode::TYPE_MISMATCH;
+		return StartErrorCode::PARAMETER_TYPE_MISMATCH;
 	}
+	if (!data.allocate(function->getStackPattern().getBytesSize()))
+		return StartErrorCode::DATA_ALLOC_FAIL;
 	function->call(data);
-	return ErrorCode::NONE;
+	return StartErrorCode::START_NONE;
 }
