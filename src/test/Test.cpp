@@ -38,6 +38,6 @@ void testTyper()
 void Test::test()
 {
 	//testDataPattern();
-	//testStarter();
-	testTyper();
+	testStarter();
+	//testTyper();
 }

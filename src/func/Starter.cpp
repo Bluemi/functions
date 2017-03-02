@@ -8,7 +8,7 @@ Starter::Starter(Function* f)
 
 ErrorCode Starter::start()
 {
-	if (!matches(function->getParameterPattern(), dataPattern))
+	if (!DataPattern::matches(function->getParameterPattern(), dataPattern))
 	{
 		return ErrorCode::TYPE_MISMATCH;
 	}
