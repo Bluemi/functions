@@ -3,6 +3,8 @@
 #include <misc/Debug.hpp>
 #include <data/DataPattern.hpp>
 #include <data/DataType.hpp>
+#include <func/MutableFunction.hpp>
+#include <func/Starter.hpp>
 
 void testDataPattern()
 {
@@ -15,7 +17,18 @@ void testDataPattern()
 	}
 }
 
+void testStarter()
+{
+	DataPattern pattern;
+	pattern << DataType::INT;
+	Function* mainFunc = new MutableFunction(pattern);
+	Starter starter(mainFunc);
+	starter << 3;
+	starter.start();
+}
+
 void Test::test()
 {
 	//testDataPattern();
+	testStarter();
 }

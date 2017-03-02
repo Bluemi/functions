@@ -14,7 +14,7 @@ void DataMask::addOffset(const unsigned int index, const unsigned int value)
 	offsets_.insert(offsets_.begin()+index, value);
 }
 
-unsigned int DataMask::getOffset(const unsigned int index) const
+unsigned int DataMask::operator[](const unsigned int index) const
 {
 	return offsets_[index];
 }

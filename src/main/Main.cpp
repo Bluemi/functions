@@ -12,8 +12,6 @@
 #include <misc/Converter.hpp>
 #include <test/Test.hpp>
 
-#define TEST false
-
 int main()
 {
 	if (TEST)

@@ -9,7 +9,8 @@ void printNumber(int n)
 
 int main()
 {
-	int i = 2; // eigene Variable auf dem Stack erzeugen
-	printNumber(i);
+	int a; // Variable deklarieren
+	a = 2; // eigene Variable auf dem Stack erzeugen
+	printNumber(a);
 	return 0;
 }

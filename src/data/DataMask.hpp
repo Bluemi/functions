@@ -14,7 +14,7 @@ class DataMask
 		DataMask& operator<< (const unsigned int value);
 		void addOffset(const unsigned int index, const unsigned int value);
 
-		unsigned int getOffset(const unsigned int index) const;
+		unsigned int operator[](const unsigned int index) const;
 
 		bool validIndex(const unsigned int index) const;
 		unsigned int getSize() const;

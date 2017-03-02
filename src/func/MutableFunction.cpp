@@ -66,7 +66,7 @@ ErrorCode MutableFunction::checkAddFunction(Function* func, const DataMask& func
 	}
 	for (unsigned int i = 0; i < funcMask.getSize(); i++)
 	{
-		DataType stackType = getStackPattern().getTypeAt(funcMask.getOffset(i));
+		DataType stackType = getStackPattern().getTypeAt(funcMask[i]);
 		DataType paramType = func->getParameterPattern()[i];
 		if (!matches(stackType, paramType))
 		{
