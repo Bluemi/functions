@@ -2,9 +2,10 @@
 
 #include <misc/Debug.hpp>
 #include <data/DataPattern.hpp>
-#include <data/DataType.hpp>
+#include <data/types/DataType.hpp>
 #include <func/MutableFunction.hpp>
 #include <func/Starter.hpp>
+#include <data/types/Typer.hpp>
 
 void testDataPattern()
 {
@@ -26,9 +27,17 @@ void testStarter()
 	starter << 3;
 	starter.start();
 }
+void testTyper()
+{
+	std::cout << "Typer<int>::toDataType()=" << getTypeName(Typer<int>::toDataType()) << std::endl;
+	std::cout << "Typer<float>::toDataType()=" << getTypeName(Typer<float>::toDataType()) << std::endl;
+	std::cout << "Typer<bool>::toDataType()=" << getTypeName(Typer<bool>::toDataType()) << std::endl;
+	std::cout << "Typer<const int>::toDataType()=" << getTypeName(Typer<const int>::toDataType()) << std::endl;
+}
 
 void Test::test()
 {
 	//testDataPattern();
-	testStarter();
+	//testStarter();
+	testTyper();
 }

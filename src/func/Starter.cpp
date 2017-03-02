@@ -6,12 +6,12 @@ Starter::Starter(Function* f)
 	: function(f)
 {}
 
-void Starter::start()
+ErrorCode Starter::start()
 {
-	if (function->getStackSize() != data.getSize())
+	if (!matches(function->getParameterPattern(), dataPattern))
 	{
-		Debug::warn("Starter::start(): can't call function, cause data.size(" + Converter::intToString(data.getSize()) + ") and function.stacksize(" + Converter::intToString(function->getStackSize()) + ") differ in length");
-		return;
+		return ErrorCode::TYPE_MISMATCH;
 	}
 	function->call(data);
+	return ErrorCode::NONE;
 }
