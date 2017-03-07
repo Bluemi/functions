@@ -11,6 +11,10 @@ MutableFunction::MutableFunction(const DataPattern& parameterPattern)
 
 MutableFunction::~MutableFunction()
 {
+	for (Caller* c : caller_)
+	{
+		delete c;
+	}
 	caller_.clear();
 }
 
@@ -18,7 +22,7 @@ void MutableFunction::call(const Data& d)
 {
 	for (unsigned int i = 0; i < caller_.size(); i++)
 	{
-		caller_[i].call(d);
+		caller_[i]->call(d);
 	}
 }
 
@@ -29,7 +33,7 @@ ErrorCode MutableFunction::addFunction(Function* func, const DataMask& funcMask)
 	{
 		return errorCode;
 	}
-	caller_.push_back(FunctionCaller(func, funcMask));
+	caller_.push_back(new FunctionCaller(func, funcMask));
 	return ErrorCode::NONE;
 }
 
@@ -45,7 +49,9 @@ bool MutableFunction::removeFunction(unsigned int index)
 		return false;
 	}
 
-	caller_.erase(caller_.begin()+index);
+	std::vector<Caller*>::iterator c = caller_.begin()+index;
+	caller_.erase(c);
+	delete *c;
 	return true;
 }
 

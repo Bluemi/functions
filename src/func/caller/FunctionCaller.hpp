@@ -1,20 +1,23 @@
-#ifndef __CALLER_CLASS__
-#define __CALLER_CLASS__
+#ifndef __FUNCTIONCALLER_CLASS__
+#define __FUNCTIONCALLER_CLASS__
 
 /*
 	FunctionCaller werden in Mutable Functions verwendet (MutableFunction.caller).
 	Sie sind dafür da, die in diesen FunctionCallern befindliche Function mit den richtigen Parametern zu callen
 */
 
-#include "Function.hpp"
+#include <func/caller/Caller.hpp>
+
+#include <func/Function.hpp>
 #include <data/DataMask.hpp>
 
-class FunctionCaller
+
+class FunctionCaller : public Caller
 {
 	public:
 		FunctionCaller(Function* f, const DataMask& m);
-		~FunctionCaller();
-		void call(const Data& data);
+		virtual ~FunctionCaller();
+		virtual void call(const Data& data);
 	private:
 		Function* func_;
 		DataMask mask_;
