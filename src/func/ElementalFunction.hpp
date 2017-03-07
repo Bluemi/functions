@@ -6,8 +6,13 @@
 class ElementalFunction : public Function
 {
 	public:
-		ElementalFunction();
+		ElementalFunction(const DataPattern& paramPattern);
 		virtual ~ElementalFunction();
+
+		virtual DataPattern getParameterPattern() const;
+		virtual DataPattern getStackPattern() const;
+	private:
+		DataPattern parameterPattern_;
 };
 
 #endif

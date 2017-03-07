@@ -8,9 +8,6 @@ class PrintNum : public ElementalFunction
 	public:
 		PrintNum();
 		virtual void call(const Data&) const override;
-
-		virtual DataPattern getParameterPattern() const override;
-		virtual DataPattern getStackPattern() const override;
 };
 
 #endif
