@@ -29,6 +29,7 @@ void testStarter()
 	std::cout << getString(code) << std::endl;
 	delete mainFunc;
 }
+
 void testTyper()
 {
 	std::cout << "Typer<int>::toDataType()=" << getTypeName(Typer<int>::toDataType()) << std::endl;
@@ -37,9 +38,21 @@ void testTyper()
 	std::cout << "Typer<const int>::toDataType()=" << getTypeName(Typer<const int>::toDataType()) << std::endl;
 }
 
+void testAddLocal()
+{
+	DataPattern paramPattern;
+	paramPattern << DataType::INT << DataType::FLOAT;
+	MutableFunction* func = new MutableFunction(paramPattern);
+	func->addLocal(FLOAT);
+	std::cout << "func.getStackPattern().getBytesSize()=" << func->getStackPattern().getBytesSize() << std::endl;
+	std::cout << "func.getParameterPattern().getBytesSize()=" << func->getParameterPattern().getBytesSize() << std::endl;
+	delete func;
+}
+
 void Test::test()
 {
 	//testDataPattern();
-	testStarter();
+	//testStarter();
 	//testTyper();
+	testAddLocal();
 }
