@@ -1,13 +1,13 @@
-#include "Caller.hpp"
+#include "FunctionCaller.hpp"
 
-Caller::Caller(Function* f, const DataMask& m)
+FunctionCaller::FunctionCaller(Function* f, const DataMask& m)
 	: func_(f), mask_(m)
 {}
 
-Caller::~Caller()
+FunctionCaller::~FunctionCaller()
 {}
 
-void Caller::call(const Data& data)
+void FunctionCaller::call(const Data& data)
 {
 	// initialize Stack
 	Data newStack(func_->getStackSize());

@@ -2,7 +2,7 @@
 #define __MUTABLEFUNCTION_CLASS__
 
 #include "Function.hpp"
-#include "Caller.hpp"
+#include "FunctionCaller.hpp"
 
 #include <misc/codes/ErrorCode.hpp>
 
@@ -30,7 +30,7 @@ class MutableFunction : public Function
 		DataPattern parameterPattern_;
 		DataPattern localsPattern_;
 		int stackSize_;
-		std::vector<Caller> caller_;
+		std::vector<FunctionCaller> caller_;
 };
 
 #endif

@@ -29,7 +29,7 @@ ErrorCode MutableFunction::addFunction(Function* func, const DataMask& funcMask)
 	{
 		return errorCode;
 	}
-	caller_.push_back(Caller(func, funcMask));
+	caller_.push_back(FunctionCaller(func, funcMask));
 	return ErrorCode::NONE;
 }
 

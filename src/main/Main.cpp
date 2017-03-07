@@ -43,6 +43,8 @@ void Main::run()
 		Debug::warn("Main::run(): mainFunction.addFunction() returns errorCode " + getString(code));
 	}
 
+	mainFunction->addLocal(INT);
+
 	Starter starter(mainFunction);
 	starter << 3 << 2 << 1;
 

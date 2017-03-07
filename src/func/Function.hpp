@@ -19,7 +19,7 @@ class Function
 	protected:
 		virtual void call(const Data&) = 0;
 	friend class Starter;
-	friend class Caller;
+	friend class FunctionCaller;
 };
 
 #endif
