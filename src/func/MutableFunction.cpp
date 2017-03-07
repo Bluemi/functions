@@ -26,15 +26,15 @@ void MutableFunction::call(const Data& d)
 	}
 }
 
-ErrorCode MutableFunction::addFunction(Function* func, const DataMask& funcMask)
+AddErrorCode MutableFunction::addFunction(Function* func, const DataMask& funcMask)
 {
-	ErrorCode errorCode = checkAddFunction(func, funcMask);
+	AddErrorCode errorCode = checkAddFunction(func, funcMask);
 	if (errorCode)
 	{
 		return errorCode;
 	}
 	caller_.push_back(new FunctionCaller(func, funcMask));
-	return ErrorCode::NONE;
+	return AddErrorCode::NONE;
 }
 
 bool MutableFunction::validFunctionIndex(unsigned int index)
@@ -70,12 +70,12 @@ DataPattern MutableFunction::getStackPattern() const
 	return parameterPattern_ + localsPattern_;
 }
 
-ErrorCode MutableFunction::checkAddFunction(Function* func, const DataMask& funcMask) const
+AddErrorCode MutableFunction::checkAddFunction(Function* func, const DataMask& funcMask) const
 {
 	// check valid mask
 	if (funcMask.getSize() != func->getParameterPattern().getSize())
 	{
-		return ErrorCode::WRONG_PARAMETER_SIZE;
+		return AddErrorCode::WRONG_PARAMETER_SIZE;
 	}
 	for (unsigned int i = 0; i < funcMask.getSize(); i++)
 	{
@@ -83,8 +83,8 @@ ErrorCode MutableFunction::checkAddFunction(Function* func, const DataMask& func
 		DataType paramType = func->getParameterPattern()[i];
 		if (!matches(stackType, paramType))
 		{
-			return ErrorCode::TYPE_MISMATCH;
+			return AddErrorCode::TYPE_MISMATCH;
 		}
 	}
-	return ErrorCode::NONE;
+	return AddErrorCode::NONE;
 }

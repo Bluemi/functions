@@ -1,9 +1,9 @@
-#include "ErrorCode.hpp"
+#include "AddErrorCode.hpp"
 
 #include <misc/Debug.hpp>
 #include <misc/Converter.hpp>
 
-std::string getString(const ErrorCode code)
+std::string getString(const AddErrorCode code)
 {
 	switch (code)
 	{

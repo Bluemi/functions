@@ -38,7 +38,7 @@ void Main::run()
 	mask << 8 << 4;
 
 	PrintAddition* p = new PrintAddition();
-	if (ErrorCode code = mainFunction->addFunction(p, mask))
+	if (AddErrorCode code = mainFunction->addFunction(p, mask))
 	{
 		Debug::warn("Main::run(): mainFunction.addFunction() returns errorCode " + getString(code));
 	}

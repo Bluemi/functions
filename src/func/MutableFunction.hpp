@@ -4,7 +4,7 @@
 #include "Function.hpp"
 #include <func/caller/FunctionCaller.hpp>
 
-#include <misc/codes/ErrorCode.hpp>
+#include <misc/codes/AddErrorCode.hpp>
 
 class MutableFunction : public Function
 {
@@ -13,7 +13,7 @@ class MutableFunction : public Function
 		~MutableFunction();
 
 		// Function handling
-		ErrorCode addFunction(Function* func, const DataMask& mask);
+		AddErrorCode addFunction(Function* func, const DataMask& mask);
 		bool validFunctionIndex(unsigned int index); // prüft, ob der übergebene index auf eine gültige Function zeigt
 		bool removeFunction(unsigned int index); // entfernt die Function an der Stelle <index> aus den Functions
 
@@ -26,7 +26,7 @@ class MutableFunction : public Function
 	protected:
 		virtual void call(const Data& data) override; // führt die Function aus
 	private:
-		ErrorCode checkAddFunction(Function* func, const DataMask& funcMask) const;
+		AddErrorCode checkAddFunction(Function* func, const DataMask& funcMask) const;
 		DataPattern parameterPattern_;
 		DataPattern localsPattern_;
 		int stackSize_;
