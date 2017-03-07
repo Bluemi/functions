@@ -9,8 +9,8 @@ class ElementalFunction : public Function
 		ElementalFunction(const DataPattern& paramPattern);
 		virtual ~ElementalFunction();
 
-		virtual DataPattern getParameterPattern() const;
-		virtual DataPattern getStackPattern() const;
+		virtual DataPattern getParameterPattern() const final;
+		virtual DataPattern getStackPattern() const final;
 	private:
 		DataPattern parameterPattern_;
 };
