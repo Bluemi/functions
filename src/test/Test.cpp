@@ -27,6 +27,7 @@ void testStarter()
 	starter << 3;
 	StartErrorCode code = starter.start();
 	std::cout << getString(code) << std::endl;
+	delete mainFunc;
 }
 void testTyper()
 {

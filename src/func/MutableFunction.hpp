@@ -11,10 +11,13 @@ class MutableFunction : public Function
 	public:
 		MutableFunction(const DataPattern& parameterPattern);
 		~MutableFunction();
+
+		// Function handling
 		ErrorCode addFunction(Function* func, const DataMask& mask);
-		bool validIndex(unsigned int index); // prüft, ob der übergebene index auf eine gültige Function zeigt
+		bool validFunctionIndex(unsigned int index); // prüft, ob der übergebene index auf eine gültige Function zeigt
 		bool removeFunction(unsigned int index); // entfernt die Function an der Stelle <index> aus den Functions
 
+		// get{Stack,Parameter}Pattern
 		virtual DataPattern getParameterPattern() const override;
 		virtual DataPattern getStackPattern() const override;
 	protected:

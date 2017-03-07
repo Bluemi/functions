@@ -31,14 +31,14 @@ ErrorCode MutableFunction::addFunction(Function* func, const DataMask& funcMask)
 	return ErrorCode::NONE;
 }
 
-bool MutableFunction::validIndex(unsigned int index)
+bool MutableFunction::validFunctionIndex(unsigned int index)
 {
 	return (index >= 0) && (index < caller_.size());
 }
 
 bool MutableFunction::removeFunction(unsigned int index)
 {
-	if (!validIndex(index))
+	if (!validFunctionIndex(index))
 	{
 		return false;
 	}
