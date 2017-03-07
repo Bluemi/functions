@@ -5,7 +5,7 @@
 PrintNum::PrintNum()
 {}
 
-void PrintNum::call(const Data& data)
+void PrintNum::call(const Data& data) const
 {
 	int i = data.getAt<int>(0);
 	std::cout << i << std::endl;

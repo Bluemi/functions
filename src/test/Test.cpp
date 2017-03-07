@@ -44,8 +44,10 @@ void testAddLocal()
 	paramPattern << DataType::INT << DataType::FLOAT;
 	MutableFunction* func = new MutableFunction(paramPattern);
 	func->addLocal(FLOAT);
-	std::cout << "func.getStackPattern().getBytesSize()=" << func->getStackPattern().getBytesSize() << std::endl;
-	std::cout << "func.getParameterPattern().getBytesSize()=" << func->getParameterPattern().getBytesSize() << std::endl;
+	std::cout << "func->getStackPattern().getBytesSize()=" << func->getStackPattern().getBytesSize() << std::endl;
+	std::cout << "func->getParameterPattern().getBytesSize()=" << func->getParameterPattern().getBytesSize() << std::endl;
+	for (unsigned int i = 0; i < 9; i+=4)
+		std::cout << "func->getStackPattern().getTypeAt(" << i << ")=" << getTypeName(func->getStackPattern().getTypeAt(i)) << std::endl;
 	delete func;
 }
 

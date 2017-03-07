@@ -18,7 +18,7 @@ MutableFunction::~MutableFunction()
 	caller_.clear();
 }
 
-void MutableFunction::call(const Data& d)
+void MutableFunction::call(const Data& d) const
 {
 	for (unsigned int i = 0; i < caller_.size(); i++)
 	{

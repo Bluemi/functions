@@ -17,7 +17,7 @@ class Function
 		virtual DataPattern getParameterPattern() const = 0;
 		virtual DataPattern getStackPattern() const = 0;
 	protected:
-		virtual void call(const Data&) = 0;
+		virtual void call(const Data&) const = 0;
 	friend class Starter;
 	friend class FunctionCaller;
 };

@@ -5,7 +5,7 @@
 Print::Print()
 {}
 
-void Print::call(const Data& data)
+void Print::call(const Data& data) const
 {
 	std::cout << std::endl << "hello World" << std::endl << std::endl;
 }

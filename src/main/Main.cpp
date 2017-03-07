@@ -34,16 +34,16 @@ void Main::run()
 
 	MutableFunction* mainFunction = new MutableFunction(paramPattern); // create MutableFunction that takes 3 ints as parameters
 
+	mainFunction->addLocal(INT);
+
 	DataMask mask;
-	mask << 8 << 4;
+	mask << 8 << 12;
 
 	PrintAddition* p = new PrintAddition();
 	if (AddErrorCode code = mainFunction->addFunction(p, mask))
 	{
 		Debug::warn("Main::run(): mainFunction.addFunction() returns errorCode " + getString(code));
 	}
-
-	mainFunction->addLocal(INT);
 
 	Starter starter(mainFunction);
 	starter << 3 << 2 << 1;
