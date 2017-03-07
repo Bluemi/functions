@@ -14,16 +14,16 @@ class Starter
 		template <typename T>
 		Starter& operator<<(T t);
 	private:
-		Data data;
-		DataPattern dataPattern;
-		Function* function;
+		Data data_;
+		DataPattern dataPattern_;
+		Function* function_;
 };
 
 template <typename T>
 Starter& Starter::operator<<(T t)
 {
-	data << t;
-	dataPattern << Typer<T>::toDataType();
+	data_ << t;
+	dataPattern_ << Typer<T>::toDataType();
 	return *this;
 }
 

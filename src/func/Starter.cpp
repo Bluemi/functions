@@ -3,17 +3,17 @@
 #include <misc/Debug.hpp>
 
 Starter::Starter(Function* f)
-	: function(f)
+	: function_(f)
 {}
 
 StartErrorCode Starter::start()
 {
-	if (!DataPattern::matches(function->getParameterPattern(), dataPattern))
+	if (!DataPattern::matches(function_->getParameterPattern(), dataPattern_))
 	{
 		return StartErrorCode::PARAMETER_TYPE_MISMATCH;
 	}
-	if (!data.allocate(function->getStackPattern().getBytesSize()))
+	if (!data_.allocate(function_->getStackPattern().getBytesSize()))
 		return StartErrorCode::DATA_ALLOC_FAIL;
-	function->call(data);
+	function_->call(data_);
 	return StartErrorCode::START_NONE;
 }
