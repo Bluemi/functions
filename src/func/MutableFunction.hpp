@@ -17,6 +17,9 @@ class MutableFunction : public Function
 		bool validFunctionIndex(unsigned int index); // prüft, ob der übergebene index auf eine gültige Function zeigt
 		bool removeFunction(unsigned int index); // entfernt die Function an der Stelle <index> aus den Functions
 
+		// LocalVars handling
+		void addLocal(const DataType& type);
+
 		// get{Stack,Parameter}Pattern
 		virtual DataPattern getParameterPattern() const override;
 		virtual DataPattern getStackPattern() const override;
@@ -25,6 +28,7 @@ class MutableFunction : public Function
 	private:
 		ErrorCode checkAddFunction(Function* func, const DataMask& funcMask) const;
 		DataPattern parameterPattern_;
+		DataPattern localsPattern_;
 		int stackSize_;
 		std::vector<Caller> caller_;
 };

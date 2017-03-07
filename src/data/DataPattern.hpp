@@ -24,4 +24,6 @@ class DataPattern
 		std::vector<DataType> pattern_;
 };
 
+DataPattern operator+(const DataPattern& pattern1, const DataPattern& pattern2);
+
 #endif

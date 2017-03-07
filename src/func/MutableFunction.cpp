@@ -3,9 +3,11 @@
 #include <misc/Debug.hpp>
 #include <misc/Converter.hpp>
 
-MutableFunction::MutableFunction(const DataPattern& p)
-	: parameterPattern_(p), stackSize_(getStackPattern().getBytesSize())
-{}
+MutableFunction::MutableFunction(const DataPattern& parameterPattern)
+	: parameterPattern_(parameterPattern)
+{
+	stackSize_ = getStackPattern().getSize();
+}
 
 MutableFunction::~MutableFunction()
 {
@@ -47,6 +49,11 @@ bool MutableFunction::removeFunction(unsigned int index)
 	return true;
 }
 
+void MutableFunction::addLocal(const DataType& type)
+{
+	localsPattern_ << type;
+}
+
 DataPattern MutableFunction::getParameterPattern() const
 {
 	return parameterPattern_;
@@ -54,7 +61,7 @@ DataPattern MutableFunction::getParameterPattern() const
 
 DataPattern MutableFunction::getStackPattern() const
 {
-	return getParameterPattern();
+	return parameterPattern_ + localsPattern_;
 }
 
 ErrorCode MutableFunction::checkAddFunction(Function* func, const DataMask& funcMask) const

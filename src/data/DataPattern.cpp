@@ -95,3 +95,17 @@ std::string DataPattern::toString() const
 	}
 	return s;
 }
+
+DataPattern operator+(const DataPattern& pattern1, const DataPattern& pattern2)
+{
+	DataPattern pattern;
+	for (unsigned int i = 0; i < pattern1.getSize(); i++)
+	{
+		pattern << pattern1[i];
+	}
+	for (unsigned int i = 0; i < pattern2.getSize(); i++)
+	{
+		pattern << pattern2[i];
+	}
+	return pattern;
+}
