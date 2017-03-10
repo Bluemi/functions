@@ -11,7 +11,7 @@ class Data
 		Data(unsigned int c); // reserviert einen Speicher mit c Bytes vor
 		~Data();
 		template<typename T>
-		T getAt(unsigned int offset) const;
+		T getAt(const unsigned int offset) const;
 
 		template <typename T>
 		Data& operator<<(T t);
@@ -19,6 +19,7 @@ class Data
 		void copyFrom(const Data& source, const unsigned int offset, const unsigned int size);
 		void copyData(void *source, unsigned int size);
 		bool validIndex(unsigned int offset) const;
+		// the data object contains <size> bytes after this operation, unless it contained more before
 		bool allocate(const unsigned int size);
 
 		void printString() const;
@@ -32,7 +33,7 @@ class Data
 
 // Diese Funktion überprüft nicht, ob der Zugriff über denn reservierten Speicherplatz hinaus geht
 template<typename T>
-T Data::getAt(unsigned int offset) const
+T Data::getAt(const unsigned int offset) const
 {
 	if (!validIndex(offset))
 	{

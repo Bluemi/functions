@@ -15,13 +15,11 @@ class Typer
 template<typename T>
 DataType Typer<T>::toDataType()
 {
-	if (Typer<T>::matches(DataType::INT)) {
-		return DataType::INT;
-	} else if (Typer<T>::matches(DataType::FLOAT)) {
-		return DataType::FLOAT;
-	} else if (Typer<T>::matches(DataType::BOOL)) {
-		return DataType::BOOL;
-	}
+	#define U(data_type,c_type) {}
+	#define T(data_type,c_type) if (Typer<T>::matches(DataType::data_type)) { return DataType::data_type; }
+	#include <data/types/types.list>
+	#undef U
+	#undef T
 	return DataType::UNDEFINED;
 }
 
@@ -30,22 +28,11 @@ bool Typer<T>::matches(const DataType& t)
 {
 	switch (t)
 	{
-		case INT:
-		{
-			return TypeMatcher<T,int>::equals;
-		}
-		case FLOAT:
-		{
-			return TypeMatcher<T,float>::equals;
-		}
-		case BOOL:
-		{
-			return TypeMatcher<T,bool>::equals;
-		}
-		case UNDEFINED:
-		{
-			return false;
-		}
+		#define U(data_type,c_type) case UNDEFINED: { return false; }
+		#define T(data_type,c_type) case data_type: { return TypeMatcher<T,c_type>::equals; }
+		#include <data/types/types.list>
+		#undef U
+		#undef T
 	}
 	return false;
 }

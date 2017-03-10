@@ -53,8 +53,8 @@ void testAddLocal()
 
 void Test::test()
 {
-	//testDataPattern();
-	//testStarter();
-	//testTyper();
+	testDataPattern();
+	testStarter();
+	testTyper();
 	testAddLocal();
 }

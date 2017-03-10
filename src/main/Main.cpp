@@ -37,7 +37,7 @@ void Main::run()
 	mainFunction->addLocal(INT);
 
 	DataMask mask;
-	mask << 8 << 12;
+	mask << 8 << 0;
 
 	PrintAddition* p = new PrintAddition();
 	if (AddErrorCode code = mainFunction->addFunction(p, mask))

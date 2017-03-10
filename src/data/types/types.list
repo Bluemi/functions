@@ -1,0 +1,4 @@
+T(INT,int)
+T(FLOAT,float)
+T(BOOL,bool)
+U(UNDEFINED,doNotUseCTypeOfUndefined)

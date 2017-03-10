@@ -3,7 +3,13 @@
 
 #include <string>
 
-enum DataType : char { UNDEFINED, INT, FLOAT, BOOL };
+enum DataType : char {
+	#define T(data_type,c_type) data_type,
+	#define U(data_type,c_type) data_type
+	#include "types.list"
+	#undef T
+	#undef U
+};
 
 unsigned int getTypeSize(const DataType& t);
 std::string getTypeName(DataType);

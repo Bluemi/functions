@@ -3,12 +3,16 @@
 
 #include "Caller.hpp"
 
+#include <data/DataMask.hpp>
+
 class AssignmentCaller : public Caller
 {
 	public:
-		AssignmentCaller();
+		AssignmentCaller(const DataMask& lvalue);
 		virtual ~AssignmentCaller();
 		virtual void call(const Data&);
+	private:
+		DataMask lvalue_;
 };
 
 #endif
