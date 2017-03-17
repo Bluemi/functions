@@ -21,18 +21,14 @@ Data::~Data()
 	free(data_);
 }
 
-void Data::copyFrom(const Data& source, const unsigned int offset, const unsigned int size)
+void Data::addDataFrom(const Data& source, const unsigned int offset, const unsigned int size)
 {
-	copyData(((char*)source.data_)+offset, size);
+	addData(((char*)source.data_)+offset, size);
 }
 
-void Data::copyData(void *source, unsigned int size)
+void Data::addData(void *source, unsigned int size)
 {
-	if (capacity_ < size_+size)
-	{
-		data_ = realloc(data_, size_+size);
-		capacity_ = size_+size;
-	}
+	allocate(size_+size); // ausreichend Speicher reservieren
 	char* c = (char*) data_;
 	memcpy(c+size_, source, size);
 	size_ += size;

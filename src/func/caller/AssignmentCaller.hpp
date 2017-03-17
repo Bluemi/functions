@@ -4,15 +4,17 @@
 #include "Caller.hpp"
 
 #include <data/DataMask.hpp>
+#include <data/DataPattern.hpp>
 
 class AssignmentCaller : public Caller
 {
 	public:
-		AssignmentCaller(const DataMask& lvalue);
+		AssignmentCaller(const DataMask& targetValues, const DataPattern& targetPattern);
 		virtual ~AssignmentCaller();
 		virtual void call(Data&) override;
 	private:
-		DataMask lvalue_;
+		DataMask targetValues_;
+		DataPattern targetPattern_;
 };
 
 #endif

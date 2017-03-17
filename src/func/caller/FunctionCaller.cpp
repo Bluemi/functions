@@ -14,7 +14,7 @@ void FunctionCaller::call(Data& data)
 	// fill Parameter Values
 	for (unsigned int i = 0; i < func_->getParameterPattern().getSize(); i++)
 	{
-		newStack.copyFrom(data, mask_[i], getTypeSize(func_->getParameterPattern()[i]));
+		newStack.addDataFrom(data, mask_[i], getTypeSize(func_->getParameterPattern()[i]));
 	}
 	func_->call(newStack);
 }

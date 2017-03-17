@@ -2,6 +2,7 @@
 
 #include <misc/Debug.hpp>
 #include <misc/Converter.hpp>
+#include <func/caller/FunctionCaller.hpp>
 
 MutableFunction::MutableFunction(const DataPattern& parameterPattern)
 	: parameterPattern_(parameterPattern)

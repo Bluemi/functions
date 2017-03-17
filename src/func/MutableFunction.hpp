@@ -2,9 +2,10 @@
 #define __MUTABLEFUNCTION_CLASS__
 
 #include "Function.hpp"
-#include <func/caller/FunctionCaller.hpp>
 
 #include <misc/codes/AddErrorCode.hpp>
+#include <data/DataMask.hpp>
+#include <func/caller/Caller.hpp>
 
 class MutableFunction : public Function
 {

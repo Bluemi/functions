@@ -1,9 +1,6 @@
 #ifndef __DATA_CLASS__
 #define __DATA_CLASS__
 
-#include <misc/Debug.hpp>
-#include <misc/Converter.hpp>
-
 class Data
 {
 	public:
@@ -16,8 +13,11 @@ class Data
 		template <typename T>
 		Data& operator<<(T t);
 
-		void copyFrom(const Data& source, const unsigned int offset, const unsigned int size);
-		void copyData(void *source, unsigned int size);
+		template <typename T>
+		void setAt(const T& value, const unsigned int offset);
+
+		void addDataFrom(const Data& source, const unsigned int offset, const unsigned int size);
+		void addData(void *source, unsigned int size);
 		bool validIndex(unsigned int offset) const;
 		// the data object contains <size> bytes after this operation, unless it contained more before
 		bool allocate(const unsigned int size);
@@ -30,6 +30,9 @@ class Data
 		unsigned int size_;
 		unsigned int capacity_;
 };
+
+#include <misc/Debug.hpp>
+#include <misc/Converter.hpp>
 
 // Diese Funktion überprüft nicht, ob der Zugriff über denn reservierten Speicherplatz hinaus geht
 template<typename T>
@@ -48,8 +51,15 @@ T Data::getAt(const unsigned int offset) const
 template<typename T>
 Data& Data::operator<<(T t)
 {
-	copyData(&t, sizeof(t));
+	addData(&t, sizeof(t));
 	return *this;
+}
+
+template <typename T>
+void Data::setAt(const T& value, const unsigned int offset)
+{
+	char* c = ((char*) data_)+offset;
+	*c = value;
 }
 
 #endif

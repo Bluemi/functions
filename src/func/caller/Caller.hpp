@@ -9,7 +9,6 @@ class Caller
 		Caller();
 		virtual ~Caller();
 		virtual void call(Data&) = 0;
-	protected:
 };
 
 #endif
