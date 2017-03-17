@@ -10,7 +10,7 @@ class AssignmentCaller : public Caller
 	public:
 		AssignmentCaller(const DataMask& lvalue);
 		virtual ~AssignmentCaller();
-		virtual void call(const Data&);
+		virtual void call(Data&) override;
 	private:
 		DataMask lvalue_;
 };

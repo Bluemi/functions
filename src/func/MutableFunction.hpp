@@ -24,7 +24,7 @@ class MutableFunction : public Function
 		virtual DataPattern getParameterPattern() const override;
 		virtual DataPattern getStackPattern() const override;
 	protected:
-		virtual void call(const Data& data) const override; // führt die Function aus
+		virtual void call(Data& data) const override; // führt die Function aus
 	private:
 		AddErrorCode checkAddFunction(Function* func, const DataMask& funcMask) const;
 		DataPattern parameterPattern_;

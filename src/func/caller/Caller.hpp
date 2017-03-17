@@ -8,7 +8,7 @@ class Caller
 	public:
 		Caller();
 		virtual ~Caller();
-		virtual void call(const Data&) = 0;
+		virtual void call(Data&) = 0;
 	protected:
 };
 

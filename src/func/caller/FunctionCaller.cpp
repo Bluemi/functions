@@ -7,7 +7,7 @@ FunctionCaller::FunctionCaller(Function* f, const DataMask& m)
 FunctionCaller::~FunctionCaller()
 {}
 
-void FunctionCaller::call(const Data& data)
+void FunctionCaller::call(Data& data)
 {
 	// initialize Stack
 	Data newStack(func_->getStackSize());

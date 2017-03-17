@@ -6,7 +6,7 @@ PrintAddition::PrintAddition()
 	: ElementalFunction(DataPattern() << INT << INT)
 {}
 
-void PrintAddition::call(const Data& data) const
+void PrintAddition::call(Data& data) const
 {
 	const int a = data.getAt<int>(0);
 	const int b = data.getAt<int>(4);

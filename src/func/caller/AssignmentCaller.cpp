@@ -6,7 +6,7 @@ AssignmentCaller::AssignmentCaller(const DataMask& lvalue)
 
 AssignmentCaller::~AssignmentCaller() {}
 
-void AssignmentCaller::call(const Data&)
+void AssignmentCaller::call(Data& data)
 {
 	// TODO
 }

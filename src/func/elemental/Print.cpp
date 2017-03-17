@@ -6,7 +6,7 @@ Print::Print()
 	: ElementalFunction(DataPattern())
 {}
 
-void Print::call(const Data& data) const
+void Print::call(Data& data) const
 {
 	std::cout << std::endl << "hello World" << std::endl << std::endl;
 }

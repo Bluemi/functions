@@ -17,7 +17,7 @@ class FunctionCaller : public Caller
 	public:
 		FunctionCaller(Function* f, const DataMask& m);
 		virtual ~FunctionCaller();
-		virtual void call(const Data& data);
+		virtual void call(Data& data) override;
 	private:
 		Function* func_;
 		DataMask mask_;
