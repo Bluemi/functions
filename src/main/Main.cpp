@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include <func/MutableFunction.hpp>
-#include <func/elemental/PrintAddition.hpp>
+#include <func/elemental/Addition.hpp>
 #include <data/DataPattern.hpp>
 #include <data/DataMask.hpp>
 #include <func/Starter.hpp>
@@ -30,23 +30,26 @@ int main()
 void Main::run()
 {
 	DataPattern paramPattern;
-	paramPattern << INT << INT << INT;
+	paramPattern << INT << INT;
 
 	MutableFunction* mainFunction = new MutableFunction(paramPattern); // create MutableFunction that takes 3 ints as parameters
 
 	mainFunction->addLocal(INT);
 
-	DataMask mask;
-	mask << 8 << 0;
+	DataMask pMask;
+	pMask << 0 << 4;
 
-	PrintAddition* p = new PrintAddition();
-	if (AddErrorCode code = mainFunction->addFunction(p, mask))
+	DataMask rMask;
+	rMask << 8;
+
+	Addition* p = new Addition();
+	if (AddErrorCode code = mainFunction->addFunction(p, pMask, rMask))
 	{
 		Debug::warn("Main::run(): mainFunction.addFunction() returns errorCode " + getString(code));
 	}
 
 	Starter starter(mainFunction);
-	starter << 3 << 2 << 1;
+	starter << 1 << 2;
 
 	starter.start();
 	delete mainFunction;

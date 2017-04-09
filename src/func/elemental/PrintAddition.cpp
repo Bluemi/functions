@@ -3,12 +3,12 @@
 #include <iostream>
 
 PrintAddition::PrintAddition()
-	: ElementalFunction(DataPattern() << INT << INT)
+	: ElementalFunction(DataPattern() << INT << INT, DataPattern())
 {}
 
-void PrintAddition::call(Data& data) const
+void PrintAddition::call(Data& stack, Data* returnValues) const
 {
-	const int a = data.getAt<int>(0);
-	const int b = data.getAt<int>(4);
+	const int a = stack.getAt<int>(0);
+	const int b = stack.getAt<int>(4);
 	std::cout << a << "+" << b << "=" << (a+b) << std::endl;
 }

@@ -15,12 +15,13 @@
 class FunctionCaller : public Caller
 {
 	public:
-		FunctionCaller(Function* f, const DataMask& m);
+		FunctionCaller(Function* f, const DataMask& pMask, const DataMask& rMask);
 		virtual ~FunctionCaller();
 		virtual void call(Data& data) override;
 	private:
 		Function* func_;
-		DataMask mask_;
+		DataMask parameterMask_;
+		DataMask returnMask_;
 };
 
 #endif

@@ -13,10 +13,13 @@ class Starter
 
 		template <typename T>
 		Starter& operator<<(T t);
+
+		const Data& getReturnValues() const;
 	private:
 		Data data_;
 		DataPattern dataPattern_;
 		Function* function_;
+		Data returnValues_;
 };
 
 template <typename T>

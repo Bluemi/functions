@@ -7,7 +7,7 @@ class PrintNum : public ElementalFunction
 {
 	public:
 		PrintNum();
-		virtual void call(Data&) const override;
+		virtual void call(Data& stack, Data* returnValues) const override;
 };
 
 #endif

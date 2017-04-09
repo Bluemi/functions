@@ -3,11 +3,11 @@
 #include <iostream>
 
 PrintNum::PrintNum()
-	: ElementalFunction(DataPattern() << INT)
+	: ElementalFunction(DataPattern() << INT, DataPattern())
 {}
 
-void PrintNum::call(Data& data) const
+void PrintNum::call(Data& stack, Data* returnValues) const
 {
-	int i = data.getAt<int>(0);
+	int i = stack.getAt<int>(0);
 	std::cout << i << std::endl;
 }

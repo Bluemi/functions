@@ -3,10 +3,10 @@
 #include <iostream>
 
 Print::Print()
-	: ElementalFunction(DataPattern())
+	: ElementalFunction(DataPattern(), DataPattern())
 {}
 
-void Print::call(Data& data) const
+void Print::call(Data& stack, Data* returnValues) const
 {
 	std::cout << std::endl << "hello World" << std::endl << std::endl;
 }

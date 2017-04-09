@@ -1,12 +1,12 @@
-#ifndef __PRINTADDITION_CLASS__
-#define __PRINTADDITION_CLASS__
+#ifndef __ADDITION_CLASS__
+#define __ADDITION_CLASS__
 
 #include <func/ElementalFunction.hpp>
 
-class PrintAddition : public ElementalFunction
+class Addition : public ElementalFunction
 {
 	public:
-		PrintAddition();
+		Addition();
 		virtual void call(Data& stack, Data* returnValues) const override;
 };
 

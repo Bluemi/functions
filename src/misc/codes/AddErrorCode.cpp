@@ -13,6 +13,8 @@ std::string getString(const AddErrorCode code)
 			return "WRONG_PARAMETER_SIZE";
 		case TYPE_MISMATCH:
 			return "TYPE_MISMATCH";
+		case MUTATE_WHILE_RUNNING:
+			return "MUTATE_WHILE_RUNNING";
 		default:
 			Debug::warn("ErrorCode::getString(): default block");
 			break;

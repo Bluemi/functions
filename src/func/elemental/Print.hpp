@@ -7,7 +7,7 @@ class Print : public ElementalFunction
 {
 	public:
 		Print();
-		virtual void call(Data&) const override;
+		virtual void call(Data& stack, Data* returnValues) const override;
 };
 
 #endif

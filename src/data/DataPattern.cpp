@@ -42,6 +42,16 @@ DataType DataPattern::operator[](unsigned int index) const
 	return pattern_[index];
 }
 
+unsigned int DataPattern::getOffsetOf(const unsigned int index) const
+{
+	unsigned int offset = 0;
+	for (unsigned int i = 0; i < pattern_.size(); i++)
+	{
+		offset += getTypeSize(pattern_[i]);
+	}
+	return offset;
+}
+
 DataType DataPattern::getTypeAt(unsigned int offset) const
 {
 	if (getSize() == 0)

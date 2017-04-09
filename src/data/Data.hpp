@@ -18,9 +18,12 @@ class Data
 
 		void addDataFrom(const Data& source, const unsigned int offset, const unsigned int size);
 		void addData(void *source, unsigned int size);
+		void copyFromAt(const unsigned int ownOffset, const Data& source, const unsigned int sourceOffset, const unsigned int size);
 		bool validIndex(unsigned int offset) const;
 		// the data object contains <size> bytes after this operation, unless it contained more before
 		bool allocate(const unsigned int size);
+
+		void reset(unsigned int c = 0);
 
 		void printString() const;
 

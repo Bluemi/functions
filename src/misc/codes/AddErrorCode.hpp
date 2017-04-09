@@ -3,7 +3,7 @@
 
 #include <string>
 
-enum AddErrorCode { NONE, WRONG_PARAMETER_SIZE, TYPE_MISMATCH };
+enum AddErrorCode { NONE, WRONG_PARAMETER_SIZE, TYPE_MISMATCH, MUTATE_WHILE_RUNNING };
 
 std::string getString(const AddErrorCode code);
 
