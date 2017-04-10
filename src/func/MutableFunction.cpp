@@ -32,25 +32,25 @@ void MutableFunction::call(Data& stack, Data* returnValues) const
 	whatIs(stack.getAt<int>(8));
 }
 
-AddErrorCode MutableFunction::addFunction(Function* func, const DataMask& pMask)
+AddErrorCode MutableFunction::addFunction(Function* func, const DataMapping& pMapping)
 {
-	AddErrorCode errorCode = checkAddFunction(func, pMask);
+	AddErrorCode errorCode = checkAddFunction(func, pMapping);
 	if (errorCode)
 	{
 		return errorCode;
 	}
-	caller_.push_back(new FunctionCaller(func, pMask, DataMask()));
+	caller_.push_back(new FunctionCaller(func, pMapping, DataMapping()));
 	return AddErrorCode::NONE;
 }
 
-AddErrorCode MutableFunction::addFunction(Function* func, const DataMask& pMask, const DataMask& rMask)
+AddErrorCode MutableFunction::addFunction(Function* func, const DataMapping& pMapping, const DataMapping& rMapping)
 {
-	AddErrorCode errorCode = checkAddFunction(func, pMask, rMask);
+	AddErrorCode errorCode = checkAddFunction(func, pMapping, rMapping);
 	if (errorCode)
 	{
 		return errorCode;
 	}
-	caller_.push_back(new FunctionCaller(func, pMask, rMask));
+	caller_.push_back(new FunctionCaller(func, pMapping, rMapping));
 	return AddErrorCode::NONE;
 }
 
@@ -92,16 +92,16 @@ DataPattern MutableFunction::getReturnDataPattern() const
 	return returnDataPattern_;
 }
 
-AddErrorCode MutableFunction::checkAddFunction(Function* func, const DataMask& pMask) const
+AddErrorCode MutableFunction::checkAddFunction(Function* func, const DataMapping& pMapping) const
 {
-	// check valid mask
-	if (pMask.getSize() != func->getParameterPattern().getSize())
+	// check valid mapping
+	if (pMapping.getSize() != func->getParameterPattern().getSize())
 	{
 		return AddErrorCode::WRONG_PARAMETER_SIZE;
 	}
-	for (unsigned int i = 0; i < pMask.getSize(); i++)
+	for (unsigned int i = 0; i < pMapping.getSize(); i++)
 	{
-		const DataType stackType = getStackPattern().getTypeAt(pMask[i]);
+		const DataType stackType = getStackPattern().getTypeAt(pMapping[i]);
 		const DataType paramType = func->getParameterPattern()[i];
 		if (!matches(stackType, paramType))
 		{
@@ -111,21 +111,21 @@ AddErrorCode MutableFunction::checkAddFunction(Function* func, const DataMask& p
 	return AddErrorCode::NONE;
 }
 
-AddErrorCode MutableFunction::checkAddFunction(Function* func, const DataMask& pMask, const DataMask& rMask) const
+AddErrorCode MutableFunction::checkAddFunction(Function* func, const DataMapping& pMapping, const DataMapping& rMapping) const
 {
-	AddErrorCode errorCode = checkAddFunction(func, pMask);
+	AddErrorCode errorCode = checkAddFunction(func, pMapping);
 	if (errorCode)
 	{
 		return errorCode;
 	}
 
-	if (rMask.getSize() != func->getReturnDataPattern().getSize())
+	if (rMapping.getSize() != func->getReturnDataPattern().getSize())
 	{
 		return AddErrorCode::WRONG_PARAMETER_SIZE;
 	}
-	for (unsigned int i = 0; i < rMask.getSize(); i++)
+	for (unsigned int i = 0; i < rMapping.getSize(); i++)
 	{
-		const DataType stackType = getStackPattern().getTypeAt(rMask[i]);
+		const DataType stackType = getStackPattern().getTypeAt(rMapping[i]);
 		const DataType returnType = func->getReturnDataPattern()[i];
 		if (!matches(stackType, returnType))
 		{

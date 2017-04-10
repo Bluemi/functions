@@ -1,5 +1,5 @@
-#ifndef __DATAMASK_CLASS__
-#define __DATAMASK_CLASS__
+#ifndef __DATAMAPPING_CLASS__
+#define __DATAMAPPING_CLASS__
 
 /*
 	Speichert die für einen Funktionsaufruf nötigen offsets bezüglich des void-Pointers
@@ -7,11 +7,11 @@
 
 #include <vector>
 
-class DataMask
+class DataMapping
 {
 	public:
-		DataMask();
-		DataMask& operator<< (const unsigned int value);
+		DataMapping();
+		DataMapping& operator<< (const unsigned int value);
 		void addOffset(const unsigned int index, const unsigned int value);
 
 		unsigned int operator[](const unsigned int index) const;

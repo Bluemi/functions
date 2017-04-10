@@ -5,7 +5,7 @@
 #include <func/MutableFunction.hpp>
 #include <func/elemental/Addition.hpp>
 #include <data/DataPattern.hpp>
-#include <data/DataMask.hpp>
+#include <data/DataMapping.hpp>
 #include <func/Starter.hpp>
 // Debug
 #include <misc/Debug.hpp>
@@ -36,14 +36,14 @@ void Main::run()
 
 	mainFunction->addLocal(INT);
 
-	DataMask pMask;
-	pMask << 0 << 4;
+	DataMapping pMapping;
+	pMapping << 0 << 4;
 
-	DataMask rMask;
-	rMask << 8;
+	DataMapping rMapping;
+	rMapping << 8;
 
 	Addition* p = new Addition();
-	if (AddErrorCode code = mainFunction->addFunction(p, pMask, rMask))
+	if (AddErrorCode code = mainFunction->addFunction(p, pMapping, rMapping))
 	{
 		Debug::warn("Main::run(): mainFunction.addFunction() returns errorCode " + getString(code));
 	}

@@ -3,17 +3,17 @@
 
 #include "Caller.hpp"
 
-#include <data/DataMask.hpp>
+#include <data/DataMapping.hpp>
 #include <data/DataPattern.hpp>
 
 class AssignmentCaller : public Caller
 {
 	public:
-		AssignmentCaller(const DataMask& targetValues, const DataPattern& targetPattern);
+		AssignmentCaller(const DataMapping& targetValues, const DataPattern& targetPattern);
 		virtual ~AssignmentCaller();
 		virtual void call(Data&) override;
 	private:
-		DataMask targetValues_;
+		DataMapping targetValues_;
 		DataPattern targetPattern_;
 };
 

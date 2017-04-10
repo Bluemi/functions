@@ -9,19 +9,19 @@
 #include <func/caller/Caller.hpp>
 
 #include <func/Function.hpp>
-#include <data/DataMask.hpp>
+#include <data/DataMapping.hpp>
 
 
 class FunctionCaller : public Caller
 {
 	public:
-		FunctionCaller(Function* f, const DataMask& pMask, const DataMask& rMask);
+		FunctionCaller(Function* f, const DataMapping& pMapping, const DataMapping& rMapping);
 		virtual ~FunctionCaller();
 		virtual void call(Data& data) override;
 	private:
 		Function* func_;
-		DataMask parameterMask_;
-		DataMask returnMask_;
+		DataMapping parameterMapping_;
+		DataMapping returnMapping_;
 };
 
 #endif

@@ -4,7 +4,7 @@
 #include "Function.hpp"
 
 #include <misc/codes/AddErrorCode.hpp>
-#include <data/DataMask.hpp>
+#include <data/DataMapping.hpp>
 #include <func/caller/Caller.hpp>
 
 class MutableFunction : public Function
@@ -14,8 +14,8 @@ class MutableFunction : public Function
 		~MutableFunction();
 
 		// Function handling
-		AddErrorCode addFunction(Function* func, const DataMask& mask);
-		AddErrorCode addFunction(Function* func, const DataMask& mask, const DataMask& rMask);
+		AddErrorCode addFunction(Function* func, const DataMapping& mapping);
+		AddErrorCode addFunction(Function* func, const DataMapping& mapping, const DataMapping& rMapping);
 		bool validFunctionIndex(unsigned int index); // prüft, ob der übergebene index auf eine gültige Function zeigt
 		bool removeFunction(unsigned int index); // entfernt die Function an der Stelle <index> aus den Functions
 
@@ -31,8 +31,8 @@ class MutableFunction : public Function
 	protected:
 		virtual void call(Data& stack, Data* returnValues) const override; // führt die Function aus
 	private:
-		AddErrorCode checkAddFunction(Function* func, const DataMask& pMask) const;
-		AddErrorCode checkAddFunction(Function* func, const DataMask& pMask, const DataMask& rMask) const;
+		AddErrorCode checkAddFunction(Function* func, const DataMapping& pMapping) const;
+		AddErrorCode checkAddFunction(Function* func, const DataMapping& pMapping, const DataMapping& rMapping) const;
 		DataPattern parameterPattern_;
 		DataPattern localsPattern_;
 		DataPattern returnDataPattern_;

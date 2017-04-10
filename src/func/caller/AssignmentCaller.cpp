@@ -1,6 +1,6 @@
 #include "AssignmentCaller.hpp"
 
-AssignmentCaller::AssignmentCaller(const DataMask& targetValues, const DataPattern& targetPattern)
+AssignmentCaller::AssignmentCaller(const DataMapping& targetValues, const DataPattern& targetPattern)
 	: targetValues_(targetValues), targetPattern_(targetPattern)
 {}
 
