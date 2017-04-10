@@ -24,7 +24,7 @@ class MutableFunction : public Function
 		// LocalVars handling
 		void addLocal(const DataType& type);
 
-		// get{Stack,Parameter}Pattern
+		// get{Stack,Parameter,Return}Pattern
 		virtual DataPattern getParameterPattern() const override;
 		virtual DataPattern getStackPattern() const override;
 		virtual DataPattern getReturnDataPattern() const override;

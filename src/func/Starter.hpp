@@ -22,12 +22,4 @@ class Starter
 		Data returnValues_;
 };
 
-template <typename T>
-Starter& Starter::operator<<(T t)
-{
-	data_ << t;
-	dataPattern_ << Typer<T>::toDataType();
-	return *this;
-}
-
 #endif

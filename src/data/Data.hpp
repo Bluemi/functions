@@ -34,35 +34,4 @@ class Data
 		unsigned int capacity_;
 };
 
-#include <misc/Debug.hpp>
-#include <misc/Converter.hpp>
-
-// Diese Funktion überprüft nicht, ob der Zugriff über denn reservierten Speicherplatz hinaus geht
-template<typename T>
-T Data::getAt(const unsigned int offset) const
-{
-	if (!validIndex(offset))
-	{
-		Debug::warn("Data::getIntAt(index=" + Converter::intToString(offset) + "): invalid index");
-		return 0;
-	}
-	char *c = (char*)data_;
-	T *x = (T*)(c+offset);
-	return *x;
-}
-
-template<typename T>
-Data& Data::operator<<(T t)
-{
-	addData(&t, sizeof(t));
-	return *this;
-}
-
-template <typename T>
-void Data::setAt(const T& value, const unsigned int offset)
-{
-	char* c = ((char*) data_)+offset;
-	*c = value;
-}
-
 #endif

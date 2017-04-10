@@ -17,11 +17,25 @@ StartErrorCode Starter::start()
 	if (!data_.allocate(function_->getStackPattern().getBytesSize()))
 		return StartErrorCode::DATA_ALLOC_FAIL;
 	// initiate returnValues
-	returnValues_.allocate(function_->getReturnDataPattern().getBytesSize());
+	returnValues_.reset(function_->getReturnDataPattern().getBytesSize());
 	// call
 	function_->call(data_, &returnValues_);
 	return StartErrorCode::START_NONE;
 }
+
+template <typename T>
+Starter& Starter::operator<<(T t)
+{
+	data_ << t;
+	dataPattern_ << Typer<T>::toDataType();
+	return *this;
+}
+
+#define T(data_type, c_type) template Starter& Starter::operator<<(c_type t);
+#define U(data_type, c_type) ;
+#include <data/types/types.list>
+#undef T
+#undef U
 
 const Data& Starter::getReturnValues() const
 {
