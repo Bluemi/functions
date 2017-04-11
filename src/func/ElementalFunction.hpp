@@ -11,10 +11,10 @@ class ElementalFunction : public Function
 
 		virtual DataPattern getParameterPattern() const final override;
 		virtual DataPattern getStackPattern() const final override;
-		virtual DataPattern getReturnDataPattern() const final override;
+		virtual DataPattern getReturnPattern() const final override;
 	private:
 		DataPattern parameterPattern_;
-		DataPattern returnDataPattern_;
+		DataPattern returnPattern_;
 };
 
 #endif

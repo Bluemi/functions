@@ -1,7 +1,7 @@
 #include "ElementalFunction.hpp"
 
-ElementalFunction::ElementalFunction(const DataPattern& paramPattern, const DataPattern& returnDataPattern)
-	: parameterPattern_(paramPattern), returnDataPattern_(returnDataPattern)
+ElementalFunction::ElementalFunction(const DataPattern& paramPattern, const DataPattern& returnPattern)
+	: parameterPattern_(paramPattern), returnPattern_(returnPattern)
 {}
 
 ElementalFunction::~ElementalFunction()
@@ -17,7 +17,7 @@ DataPattern ElementalFunction::getStackPattern() const
 	return DataPattern();
 }
 
-DataPattern ElementalFunction::getReturnDataPattern() const
+DataPattern ElementalFunction::getReturnPattern() const
 {
-	return returnDataPattern_;
+	return returnPattern_;
 }

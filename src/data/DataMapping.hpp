@@ -7,19 +7,21 @@
 
 #include <vector>
 
+typedef unsigned int data_offset;
+
 class DataMapping
 {
 	public:
 		DataMapping();
-		DataMapping& operator<< (const unsigned int value);
-		void addOffset(const unsigned int index, const unsigned int value);
+		DataMapping& operator<< (const data_offset value);
+		void addOffset(const unsigned int index, const data_offset value);
 
-		unsigned int operator[](const unsigned int index) const;
+		data_offset operator[](const unsigned int index) const;
 
 		bool validIndex(const unsigned int index) const;
 		unsigned int getSize() const;
 	private:
-		std::vector<unsigned int> offsets_;
+		std::vector<data_offset> offsets_;
 };
 
 #endif

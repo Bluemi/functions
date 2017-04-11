@@ -27,7 +27,7 @@ class MutableFunction : public Function
 		// get{Stack,Parameter,Return}Pattern
 		virtual DataPattern getParameterPattern() const override;
 		virtual DataPattern getStackPattern() const override;
-		virtual DataPattern getReturnDataPattern() const override;
+		virtual DataPattern getReturnPattern() const override;
 	protected:
 		virtual void call(Data& stack, Data* returnValues) const override; // führt die Function aus
 	private:
@@ -35,7 +35,7 @@ class MutableFunction : public Function
 		AddErrorCode checkAddFunction(Function* func, const DataMapping& pMapping, const DataMapping& rMapping) const;
 		DataPattern parameterPattern_;
 		DataPattern localsPattern_;
-		DataPattern returnDataPattern_;
+		DataPattern returnPattern_;
 		int stackSize_;
 		std::vector<Caller*> caller_;
 };

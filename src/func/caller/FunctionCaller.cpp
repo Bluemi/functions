@@ -17,14 +17,14 @@ void FunctionCaller::call(Data& data)
 		newStack.addDataFrom(data, parameterMapping_[i], getTypeSize(func_->getParameterPattern()[i]));
 	}
 	// intialize returnValues_
-	Data returnValues(func_->getReturnDataPattern().getBytesSize());
+	Data returnValues(func_->getReturnPattern().getBytesSize());
 	// call
 	func_->call(newStack, &returnValues);
 	// apply return Values
 	unsigned int returnValuesOffset = 0;
-	for (unsigned int i = 0; i < func_->getReturnDataPattern().getSize(); i++)
+	for (unsigned int i = 0; i < func_->getReturnPattern().getSize(); i++)
 	{
-		const unsigned int size = getTypeSize(func_->getReturnDataPattern()[i]);
+		const unsigned int size = getTypeSize(func_->getReturnPattern()[i]);
 		data.copyFromAt(returnMapping_[i], returnValues, returnValuesOffset, size);
 		returnValuesOffset += size;
 	}

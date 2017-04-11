@@ -25,11 +25,6 @@ void MutableFunction::call(Data& stack, Data* returnValues) const
 	{
 		caller_[i]->call(stack);
 	}
-
-	// print Stack TEST
-	whatIs(stack.getAt<int>(0));
-	whatIs(stack.getAt<int>(4));
-	whatIs(stack.getAt<int>(8));
 }
 
 AddErrorCode MutableFunction::addFunction(Function* func, const DataMapping& pMapping)
@@ -87,9 +82,9 @@ DataPattern MutableFunction::getStackPattern() const
 	return parameterPattern_ + localsPattern_;
 }
 
-DataPattern MutableFunction::getReturnDataPattern() const
+DataPattern MutableFunction::getReturnPattern() const
 {
-	return returnDataPattern_;
+	return returnPattern_;
 }
 
 AddErrorCode MutableFunction::checkAddFunction(Function* func, const DataMapping& pMapping) const
@@ -119,14 +114,14 @@ AddErrorCode MutableFunction::checkAddFunction(Function* func, const DataMapping
 		return errorCode;
 	}
 
-	if (rMapping.getSize() != func->getReturnDataPattern().getSize())
+	if (rMapping.getSize() != func->getReturnPattern().getSize())
 	{
 		return AddErrorCode::WRONG_PARAMETER_SIZE;
 	}
 	for (unsigned int i = 0; i < rMapping.getSize(); i++)
 	{
 		const DataType stackType = getStackPattern().getTypeAt(rMapping[i]);
-		const DataType returnType = func->getReturnDataPattern()[i];
+		const DataType returnType = func->getReturnPattern()[i];
 		if (!matches(stackType, returnType))
 		{
 			return AddErrorCode::TYPE_MISMATCH;

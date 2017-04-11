@@ -17,7 +17,7 @@ StartErrorCode Starter::start()
 	if (!data_.allocate(function_->getStackPattern().getBytesSize()))
 		return StartErrorCode::DATA_ALLOC_FAIL;
 	// initiate returnValues
-	returnValues_.reset(function_->getReturnDataPattern().getBytesSize());
+	returnValues_.reset(function_->getReturnPattern().getBytesSize());
 	// call
 	function_->call(data_, &returnValues_);
 	return StartErrorCode::START_NONE;

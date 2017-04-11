@@ -3,18 +3,18 @@
 DataMapping::DataMapping()
 {}
 
-DataMapping& DataMapping::operator<< (const unsigned int value)
+DataMapping& DataMapping::operator<< (const data_offset value)
 {
 	offsets_.push_back(value);
 	return *this;
 }
 
-void DataMapping::addOffset(const unsigned int index, const unsigned int value)
+void DataMapping::addOffset(const unsigned int index, const data_offset value)
 {
 	offsets_.insert(offsets_.begin()+index, value);
 }
 
-unsigned int DataMapping::operator[](const unsigned int index) const
+data_offset DataMapping::operator[](const unsigned int index) const
 {
 	return offsets_[index];
 }
